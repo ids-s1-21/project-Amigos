@@ -17,3 +17,5 @@ using the following format.
 - `Profession`: The profession of the person
 - `CITY`: The city of residence of the person
 - `STATE`: The state of residence of the person
+
+Dimensions: 28000x13
