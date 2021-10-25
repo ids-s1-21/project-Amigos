@@ -19,6 +19,10 @@ How does a person's situation and current status affect Loan Defaulting. Our dat
 
 ## 2. Data
 
+```{r}
+glimpse(Loan)
+```
+
 
 
 ## 3. Data analysis plan
