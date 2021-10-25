@@ -68,3 +68,13 @@ higher income (income higher than the median income), helps in paying
 back the loan. Finally, we would like to see if being married helps
 people pay back their loans, since there is support from a husband or a
 wife and therefore more money is available in paying back the loan.
+
+``` r
+Loans %>%
+  ggplot() +
+  geom_hex(aes(x = Age, y = log10(Income))) +
+  ggtitle("Age vs Income") +
+  ylab("Income (log10)")
+```
+
+![](proposal_files/figure-gfm/visualisation-1.png)<!-- -->
