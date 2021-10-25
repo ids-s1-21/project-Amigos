@@ -1,5 +1,5 @@
 ---
-title: "Project proposal"
+title: "Loan Defaulting Investigation"
 author: "Amigos"
 output: github_document
 ---
@@ -7,12 +7,13 @@ output: github_document
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(broom)
-library(ridges)
+library(ggridges)
 ```
 
 *For instructions on what each section should include, please see the [project page](https://idsed.digital/assessments/project/#proposal) on the course website. Remove this text when completing your proposal*.
 
 ## 1. Introduction
+How does a person's situation and current status affect Loan Defaulting. Our data shows observations gathered for different individuals in India related to their current status in life and whether they were able to repay a loan or not. We found our dataset from "kaggle.com" and it dataset belongs to a Hackathon organized by "Univ.AI"!!. All values were provided at the time of the loan application. Also, the cases can be described as Indian people applying for a loan and the variables used include several status situations of the applicants like, Income, Age and Marital status, but also describe parts of their lifestyle, such as Home and Car Ownership.
 
 
 
