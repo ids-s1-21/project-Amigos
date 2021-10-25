@@ -8,6 +8,7 @@ output: github_document
 library(tidyverse)
 library(broom)
 library(ggridges)
+Loans <- read.csv("/cloud/project/data/Loans.csv")
 ```
 
 *For instructions on what each section should include, please see the [project page](https://idsed.digital/assessments/project/#proposal) on the course website. Remove this text when completing your proposal*.
@@ -20,7 +21,7 @@ How does a person's situation and current status affect Loan Defaulting. Our dat
 ## 2. Data
 
 ```{r}
-
+glimpse(Loans)
 ```
 
 
