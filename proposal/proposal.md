@@ -58,7 +58,7 @@ Our goal is to see whether a correlation exists. The statistical methods
 that will allow us to represent the data in the best possible way, in
 order to answer our question are by the use of the function “Median”,
 the formation of graphs, like scatter plots or density plots and
-specifically through the use of facet wrapping and filling (colouring),
+specifically through the use of facet wrapping and filling (coloring),
 we will be able to compare all the variables mentioned and attempt to
 find a correlation. We will try to see if there is a positive
 correlation, at first, between age and income, so if as an individual

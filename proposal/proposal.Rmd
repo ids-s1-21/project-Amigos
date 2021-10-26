@@ -29,7 +29,7 @@ glimpse(Loans)
 
 ## 3. Data analysis plan
 Our research question will entail using age as the explanatory variable and given individual's income as the response variable. We will also be using comparison groups; Married/Single and Risk_Flag (0 or 1), to see whether some of or even all of them affect defaulting on a loan or not. Our goal is to see whether a correlation exists.
-The statistical methods that will allow us to represent the data in the best possible way, in order to answer our question are by the use of the function "Median", the formation of graphs, like scatter plots or density plots and specifically through the use of facet wrapping and filling (colouring), we will be able to compare all the variables mentioned and attempt to find a correlation.
+The statistical methods that will allow us to represent the data in the best possible way, in order to answer our question are by the use of the function "Median", the formation of graphs, like scatter plots or density plots and specifically through the use of facet wrapping and filling (coloring), we will be able to compare all the variables mentioned and attempt to find a correlation.
 We will try to see if there is a positive correlation, at first, between age and income, so if as an individual becomes older, his/her income rises (possibly due to work experience). Secondly, we will investigate, whether a person earning a substantially higher income (income higher than the median income), helps in paying back the loan. Finally, we would like to see if being married helps people pay back their loans, since there is support from a husband or a wife and therefore more money is available in paying back the loan.
 
 ```{r visualisation}
