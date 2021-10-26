@@ -77,4 +77,7 @@ Loans %>%
   ylab("Income (log10)")
 ```
 
+    ## Warning: Computation failed in `stat_binhex()`:
+    ## The `hexbin` package is required for `stat_binhex()`
+
 ![](proposal_files/figure-gfm/visualisation-1.png)<!-- -->
