@@ -6,6 +6,7 @@ Amigos
 library(tidyverse)
 library(broom)
 library(ggridges)
+library(here)
 Loans <- read.csv("/cloud/project/data/Loans.csv")
 ```
 
@@ -18,7 +19,7 @@ the course website. Remove this text when completing your proposal*.
 How does a person’s situation and current status affect Loan Defaulting.
 Our data shows observations gathered for different individuals in India
 related to their current status in life and whether they were able to
-repay a loan or not. We found our dataset from “kaggle.com” and it
+repay a loan or not. We found our dataset from “kaggle.com” and the
 dataset belongs to a Hackathon organized by “Univ.AI”!!. All values were
 provided at the time of the loan application. Also, the cases can be
 described as Indian people applying for a loan and the variables used
@@ -63,11 +64,6 @@ we will be able to compare all the variables mentioned and attempt to
 find a correlation. We will try to see if there is a positive
 correlation, at first, between age and income, so if as an individual
 becomes older, his/her income rises (possibly due to work experience).
-Secondly, we will investigate, whether a person earning a substantially
-higher income (income higher than the median income), helps in paying
-back the loan. Finally, we would like to see if being married helps
-people pay back their loans, since there is support from a husband or a
-wife and therefore more money is available in paying back the loan.
 
 ``` r
 Loans %>%
@@ -77,7 +73,10 @@ Loans %>%
   ylab("Income (log10)")
 ```
 
-    ## Warning: Computation failed in `stat_binhex()`:
-    ## The `hexbin` package is required for `stat_binhex()`
-
 ![](proposal_files/figure-gfm/visualisation-1.png)<!-- -->
+
+Secondly, we will investigate, whether a person earning a substantially
+higher income (income higher than the median income), helps in paying
+back the loan. Finally, we would like to see if being married helps
+people pay back their loans, since there is support from a husband or a
+wife and therefore more money is available in paying back the loan.

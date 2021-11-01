@@ -15,7 +15,9 @@ Loans <- read.csv("/cloud/project/data/Loans.csv")
 *For instructions on what each section should include, please see the [project page](https://idsed.digital/assessments/project/#proposal) on the course website. Remove this text when completing your proposal*.
 
 ## 1. Introduction
-How does a person's situation and current status affect Loan Defaulting. Our data shows observations gathered for different individuals in India related to their current status in life and whether they were able to repay a loan or not. We found our dataset from "kaggle.com" and it dataset belongs to a Hackathon organized by "Univ.AI"!!. All values were provided at the time of the loan application. Also, the cases can be described as Indian people applying for a loan and the variables used include several status situations of the applicants like, Income, Age and Marital status, but also describe parts of their lifestyle, such as Home and Car Ownership.
+How does a person's situation and current status affect Loan Defaulting.
+Our data shows observations gathered for different individuals in India related to their current status in life and whether they were able to repay a loan or not. We found our dataset from "kaggle.com" and the dataset belongs to a Hackathon organized by "Univ.AI"!!.
+All values were provided at the time of the loan application. Also, the cases can be described as Indian people applying for a loan and the variables used include several status situations of the applicants like, Income, Age and Marital status, but also describe parts of their lifestyle, such as Home and Car Ownership.
 
 
 
@@ -30,7 +32,7 @@ glimpse(Loans)
 ## 3. Data analysis plan
 Our research question will entail using age as the explanatory variable and given individual's income as the response variable. We will also be using comparison groups; Married/Single and Risk_Flag (0 or 1), to see whether some of or even all of them affect defaulting on a loan or not. Our goal is to see whether a correlation exists.
 The statistical methods that will allow us to represent the data in the best possible way, in order to answer our question are by the use of the function "Median", the formation of graphs, like scatter plots or density plots and specifically through the use of facet wrapping and filling (coloring), we will be able to compare all the variables mentioned and attempt to find a correlation.
-We will try to see if there is a positive correlation, at first, between age and income, so if as an individual becomes older, his/her income rises (possibly due to work experience). Secondly, we will investigate, whether a person earning a substantially higher income (income higher than the median income), helps in paying back the loan. Finally, we would like to see if being married helps people pay back their loans, since there is support from a husband or a wife and therefore more money is available in paying back the loan.
+We will try to see if there is a positive correlation, at first, between age and income, so if as an individual becomes older, his/her income rises (possibly due to work experience).
 
 ```{r visualisation}
 Loans %>%
@@ -39,3 +41,5 @@ Loans %>%
   ggtitle("Age vs Income") +
   ylab("Income (log10)")
 ```
+
+Secondly, we will investigate, whether a person earning a substantially higher income (income higher than the median income), helps in paying back the loan. Finally, we would like to see if being married helps people pay back their loans, since there is support from a husband or a wife and therefore more money is available in paying back the loan.
