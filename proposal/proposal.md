@@ -75,8 +75,28 @@ Loans %>%
 
 ![](proposal_files/figure-gfm/visualisation-1.png)<!-- -->
 
-Secondly, we will investigate, whether a person earning a substantially
+Secondly, we will investigate whether a person earning a substantially
 higher income (income higher than the median income), helps in paying
-back the loan. Finally, we would like to see if being married helps
-people pay back their loans, since there is support from a husband or a
-wife and therefore more money is available in paying back the loan.
+back the loan.
+
+``` r
+  median(Loans$Income)
+```
+
+    ## [1] 5046744
+
+Finally, we would like to see if being married helps people pay back
+their loans, since there is support from a husband or a wife and
+therefore more money is available in paying back the loan.
+
+``` r
+Loans %>%
+  group_by(Married.Single) %>%
+  summarise(Count = n())
+```
+
+    ## # A tibble: 2 × 2
+    ##   Married.Single Count
+    ##   <chr>          <int>
+    ## 1 married         2830
+    ## 2 single         25170

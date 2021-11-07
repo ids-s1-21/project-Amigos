@@ -42,4 +42,18 @@ Loans %>%
   ylab("Income (log10)")
 ```
 
-Secondly, we will investigate, whether a person earning a substantially higher income (income higher than the median income), helps in paying back the loan. Finally, we would like to see if being married helps people pay back their loans, since there is support from a husband or a wife and therefore more money is available in paying back the loan.
+Secondly, we will investigate whether a person earning a substantially higher income (income higher than the median income), helps in paying back the loan.
+
+```{r}
+  median(Loans$Income)
+```
+
+
+Finally, we would like to see if being married helps people pay back their loans, since there is support from a husband or a wife and therefore more money is available in paying back the loan.
+
+```{r}
+Loans %>%
+  group_by(Married.Single) %>%
+  summarise(Count = n())
+```
+
