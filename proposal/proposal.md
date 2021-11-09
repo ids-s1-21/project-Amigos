@@ -6,6 +6,7 @@ Amigos
 library(tidyverse)
 library(broom)
 library(ggridges)
+library(here)
 Loans <- read.csv("/cloud/project/data/Loans.csv")
 ```
 
