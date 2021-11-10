@@ -34,7 +34,6 @@ such as Home and Car Ownership.
 glimpse(Loans)
 ```
 
-
 ## 3. Data analysis plan
 Our research question will entail using age as the explanatory variable
 and the individual’s income as the response variable. We will also be
