@@ -16,15 +16,16 @@ Loans <- read.csv("/cloud/project/data/Loans.csv")
 
 ## 1. Introduction
 "How does a person’s situation and current status affect Loan Defaulting".
+
 Our data shows observations gathered for different individuals in India
 related to their current status in life and whether they were able to
 repay a loan or not.
-We found our dataset from "kaggle.com" and the
-dataset belongs to a "Hackathon organized" by "Univ.AI"!!. 
-All values were provided at the time of the loan application. Also, the cases
-can be described as Indian people applying for a loan. Furthermore, the
+
+We found our dataset from "kaggle.com" and the dataset belongs to a "Hackathon organized" by "Univ.AI"!!. All values were provided at the time of the loan application.
+
+Also, the cases can be described as Indian people applying for a loan. Furthermore, the
 variables used include several status situations of the applicants, like,
-Income, Age and Marital status, but also describe parts of their lifestyle,
+Income, Age and Marital status, but also describe aspects of their lifestyle,
 such as Home and Car Ownership.
 
 
@@ -40,12 +41,14 @@ and the individual’s income as the response variable. We will also be
 using comparison groups; Married/Single and Risk\_Flag (0 or 1), to see
 whether some of, or even all of them affect defaulting on a loan or not.
 Our goal is to see whether a correlation exists.
+
 The statistical methods that will allow us to represent the data in the best
-possible way, in order to answer our question are by the use of the function
-“Median”,the formation of graphs, like scatter plots or density plots and
+possible way, in order to answer our question, are by the use of the function
+“Median”, the formation of graphs, like scatter plots or density plots, and
 specifically through the use of facet wrapping and filling (coloring).
 We will be able to compare all the variables mentioned and attempt to find
 a correlation.
+
 A positive correlation, between age and income, will certainly indicate that as
 an individual becomes older, his/her income rises 
 (possibly due to work experience).
