@@ -25,7 +25,7 @@ knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618,
 ```
 
 ```{r load-data, include=FALSE}
-# Load your data here
+Loans <- read.csv("/cloud/project/data/Loans.csv")
 ```
 
 ## A statement of the overall goal / research question {data-background-image="img/confetti.jpg"}
