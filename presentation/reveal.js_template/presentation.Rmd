@@ -28,13 +28,32 @@ knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618,
 Loans <- read.csv("/cloud/project/data/Loans.csv")
 ```
 
-## How does a person’s situation and current status affect Loan Defaulting  {data-background-image="img/confetti.jpg"}
+## Introducing our Investigation  {data-background-image="img/Cash1.png"}
 
-# Introducing the Question and the Data
+
+How does a person’s situation and current status affect Loan Defaulting?
+
+We will try to assess the above question by examining how Age, Income and Marital Status affect Loan Defaulting, for bank clients in India.
+
+We will do this by the use of statistical models and graphs.
+
+# Introducing our Data {data-background-image="img/Loan.png"}
+
+
+
+Our data frame shows observations gathered for different individuals in India
+related to their current status in life and whether they were able to
+repay a loan or not. All values were provided at the time of the loan application at several banks India.
+
+---- 
+
+Here is a glimpse of our data frame.
+
 ```{r Loans-table, echo = FALSE}
 kable(head(Loans[1:6]), format = "html")
 ```
 
+Source: kaggle.com
 
 # Hello World
 
