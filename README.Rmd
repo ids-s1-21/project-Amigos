@@ -1,5 +1,5 @@
 ---
-title: Project title
+title: Loan Defaulting Investigation
 author: by Amigos
 output: github_document
 ---

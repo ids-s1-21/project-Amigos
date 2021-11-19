@@ -58,7 +58,7 @@ glimpse(Loans)
 
 Our research question will entail using age as the explanatory variable
 and the individual’s income as the response variable. We will also be
-using comparison groups; Married/Single and Risk\_Flag (0 or 1), to see
+using comparison groups; Married/Single and Risk_Flag (0 or 1), to see
 whether some of, or even all of them affect defaulting on a loan or not.
 Our goal is to see whether a correlation exists.
 
