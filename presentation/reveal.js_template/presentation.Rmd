@@ -7,7 +7,6 @@ date: <font size = '6'>`r Sys.Date()`</font>
 output:
   revealjs::revealjs_presentation:
     self_contained: false
-background-image: "img/s1.png"
 ---
 
 ```{r load-packages, include = FALSE}
@@ -56,7 +55,18 @@ kable(head(Loans[1:6]), format = "html")
 
 Source: kaggle.com
 
-# Hello World
+# Does Income really Increse with Experience
+
+```{r,echo=FALSE, message=FALSE}
+Loans %>%
+  group_by(Experience, Married.Single) %>%
+  summarise("med_inc" = median(Income)) %>%
+  ggplot(aes(x= Experience, y = med_inc)) +
+  geom_point() +
+  facet_wrap(~Married.Single) +
+  geom_smooth()+
+  scale_y_continuous(labels = label_dollar(scale = 1/100, prefix = "£"))
+```
 
 - Click the `Knit` button to compile your presentation
 
