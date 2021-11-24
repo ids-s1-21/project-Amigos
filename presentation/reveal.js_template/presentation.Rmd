@@ -63,15 +63,15 @@ Loans %>%
   summarise("med_inc" = median(Income)) %>%
   ggplot(aes(x= Experience, y = med_inc)) +
   geom_point() +
-  facet_wrap(~Married.Single) +
+  facet_wrap(~ Married.Single) +
   geom_smooth()+
-  scale_y_continuous(labels = label_dollar(scale = 1/100, prefix = "£"))
+  scale_y_continuous(labels = label_dollar(scale = 1/100,
+                                           prefix = "£"))
 ```
 
 
-# Using reveal.js
-
-```{r}
+# 
+```{r,echo=FALSE, message=FALSE}
 med_inc <- median(Loans$Income)
 
 Loans %>%
@@ -79,23 +79,26 @@ filter((Income) >= med_inc) %>%
   ggplot(aes(x = Income, colour = risk_flag, fill = risk_flag)) +
   geom_histogram() +
   facet_wrap(~ risk_flag) +
-  scale_x_continuous(labels = label_dollar(scale = 1/100, prefix = "£"))
-
+  scale_x_continuous(labels = label_dollar(scale = 1/100,
+                                           prefix = "£"))
+```
+#
+```{r,echo=FALSE, message=FALSE}
 Loans_Inc <- linear_reg() %>%
   set_engine("lm") %>%
   fit(risk_flag ~ Income, Loans)
 tidy(Loans_Inc)
 ```
 
-## reveal.js
-
-```{r}
+##
+```{r,echo=FALSE, message=FALSE}
 Loans %>%
 filter((Income) >= med_inc) %>%
   ggplot(aes(x = Income, colour = risk_flag, fill = risk_flag)) +
   geom_histogram() +
   facet_wrap(Married.Single ~ risk_flag) +
-  scale_x_continuous(labels = label_dollar(scale = 1/100, prefix = "£"))
+  scale_x_continuous(labels = label_dollar(scale = 1/100,
+                                           prefix = "£"))
 
 Loans_Inc_Mar <- linear_reg() %>%
   set_engine("lm") %>%
@@ -103,22 +106,13 @@ Loans_Inc_Mar <- linear_reg() %>%
 tidy(Loans_Inc_Mar)
 ```
 
-
 ----
 
-- You can also add pauses between content on a slide using (". . .")
+```{r,echo=FALSE, message=FALSE}
+glance(Loans_Inc)$adj.r.squared
+glance(Loans_Inc_Mar)$adj.r.squared
+```
 
-. . .
-
-Like this.
-
-...or using "::: fragment"
-
-::: fragment
-
-Like this.
-
-:::
 
 # Layouts
 
