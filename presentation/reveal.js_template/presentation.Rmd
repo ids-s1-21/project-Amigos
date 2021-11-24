@@ -55,7 +55,7 @@ kable(head(Loans[1:6]), format = "html")
 
 Source: kaggle.com
 
-# Does Income really Increse with Experience
+# Does Income really Increse with Experience?
 
 ```{r,echo=FALSE, message=FALSE}
 Loans %>%
@@ -68,17 +68,24 @@ Loans %>%
   scale_y_continuous(labels = label_dollar(scale = 1/100, prefix = "£"))
 ```
 
-- Click the `Knit` button to compile your presentation
-
-- Make sure to commit and push all resulting files to your GitHub repo
 
 # Using reveal.js
 
-It's possible to have a horizontal sliding transition as well as nest multiple slides to create a vertical stack.
+```{r}
+med_inc <- median(Loans$Income)
 
-When presenting, you use the left/right arrows to step through the top-level (horizontal) slides. When you arrive at a vertical stack you can optionally press the up/down arrows to view the vertical slides or skip past them by pressing the right arrow.
+Loans %>%
+filter((Income) >= med_inc) %>%
+  ggplot(aes(x = Income, colour = risk_flag, fill = risk_flag)) +
+  geom_histogram() +
+  facet_wrap(~ risk_flag) +
+  scale_x_continuous(labels = label_dollar(scale = 1/100, prefix = "£"))
 
-(click the down key now)
+Loans_Inc <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(risk_flag ~ Income, Loans)
+tidy(Loans_Inc)
+```
 
 ## reveal.js
 
