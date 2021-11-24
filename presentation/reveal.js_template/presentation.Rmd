@@ -89,11 +89,20 @@ tidy(Loans_Inc)
 
 ## reveal.js
 
-- The presentation is created using the `reveal.js` package
+```{r}
+Loans %>%
+filter((Income) >= med_inc) %>%
+  ggplot(aes(x = Income, colour = risk_flag, fill = risk_flag)) +
+  geom_histogram() +
+  facet_wrap(Married.Single ~ risk_flag) +
+  scale_x_continuous(labels = label_dollar(scale = 1/100, prefix = "£"))
 
-- You can create a slide show broken up into sections by using the # and ## heading tags
+Loans_Inc_Mar <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(risk_flag ~ Income + Married.Single, Loans)
+tidy(Loans_Inc_Mar)
+```
 
-- You can also create a new slide without a header using a horizontal rule (----)
 
 ----
 
