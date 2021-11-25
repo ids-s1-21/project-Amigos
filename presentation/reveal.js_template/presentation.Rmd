@@ -57,7 +57,7 @@ Source: kaggle.com
 
 # Does Income really Increse with Experience?
 
-```{r,echo=FALSE, message=FALSE}
+```{r,echo=FALSE, message=FALSE, echo=FALSE}
 Loans %>%
   group_by(Experience, Married.Single) %>%
   summarise("med_inc" = median(Income)) %>%
@@ -68,18 +68,35 @@ Loans %>%
   scale_y_continuous(labels = label_dollar(scale = 1/100, prefix = "£"))
 ```
 
+----
 
-# Using reveal.js
+*Not Always*
 
-```{r}
+<font size="5" align="left">
+
+From the graph we can see that for married people income generally decreases with experience, whilst for single people it increases. 
+
+Focusing on married people, we can see that income starts higher than for single people, as they have 2 salaries. There is a steep decrease which can be explained by the fact that possibly the woman stops working after the marriage, as is usually the trend in developing countries with less developed societies. Then, after 7 years of experience, the income starts to rise, due to the fact that the people have more experience, thus are more productive and are rewarded for this. However, after 12 years income starts decreasing again, likely because after a certain age people become fatigued of their job and their productivity decreases and some even retire (a number which increases as the years of experience increase), leading to the effect observed. 
+
+For single people, the general trend for the first 15 years is for income to grow with experience. Although, after 15 years people grow bored of their jobs, meaning they become less productive or consider retiring, both results increasing as the years go by, thus a decrease in income is observed.
+
+</font>
+
+# How does Income affect Loan Defaulting
+
+```{r, echo=FALSE}
 med_inc <- median(Loans$Income)
 
 Loans %>%
 filter((Income) >= med_inc) %>%
   ggplot(aes(x = Income, colour = risk_flag, fill = risk_flag)) +
-  geom_histogram() +
+  geom_histogram(binwidth = 200000) +
   facet_wrap(~ risk_flag) +
-  scale_x_continuous(labels = label_dollar(scale = 1/100, prefix = "£"))
+  scale_x_continuous(breaks = seq(med_inc, 10000000, by = 2000000),
+                     labels = label_dollar(scale = 1/100000,
+                                           prefix = "£",
+                                           suffix = "K",
+                                           accuracy = 1))
 
 Loans_Inc <- linear_reg() %>%
   set_engine("lm") %>%
@@ -87,15 +104,21 @@ Loans_Inc <- linear_reg() %>%
 tidy(Loans_Inc)
 ```
 
-## reveal.js
+----
 
-```{r}
+*How does Marriage Status affect this relationship*
+
+```{r, echo=FALSE}
 Loans %>%
 filter((Income) >= med_inc) %>%
   ggplot(aes(x = Income, colour = risk_flag, fill = risk_flag)) +
-  geom_histogram() +
+  geom_histogram(binwidth = 200000) +
   facet_wrap(Married.Single ~ risk_flag) +
-  scale_x_continuous(labels = label_dollar(scale = 1/100, prefix = "£"))
+  scale_x_continuous(breaks = seq(med_inc, 10000000, by = 2000000),
+                     labels = label_dollar(scale = 1/100000, 
+                                           prefix = "£", 
+                                           suffix = "K",
+                                           accuracy = 1))
 
 Loans_Inc_Mar <- linear_reg() %>%
   set_engine("lm") %>%
