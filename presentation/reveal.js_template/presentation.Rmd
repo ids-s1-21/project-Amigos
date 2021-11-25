@@ -84,10 +84,10 @@ filter((Income) >= med_inc) %>%
 ```
 #
 ```{r,echo=FALSE, message=FALSE}
-Loans_Inc <- linear_reg() %>%
+Loans_Inc_fit <- linear_reg() %>%
   set_engine("lm") %>%
   fit(risk_flag ~ Income, Loans)
-tidy(Loans_Inc)
+tidy(Loans_Inc_fit)
 ```
 
 ##
@@ -100,10 +100,10 @@ filter((Income) >= med_inc) %>%
   scale_x_continuous(labels = label_dollar(scale = 1/100,
                                            prefix = "£"))
 
-Loans_Inc_Mar <- linear_reg() %>%
+Loans_Inc_Mar_fit <- linear_reg() %>%
   set_engine("lm") %>%
   fit(risk_flag ~ Income + Married.Single, Loans)
-tidy(Loans_Inc_Mar)
+tidy(Loans_Inc_Mar_fit)
 ```
 
 ----
