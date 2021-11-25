@@ -63,9 +63,10 @@ Loans %>%
   summarise("med_inc" = median(Income)) %>%
   ggplot(aes(x= Experience, y = med_inc)) +
   geom_point() +
-  facet_wrap(~Married.Single) +
+  facet_wrap(~ Married.Single) +
   geom_smooth()+
-  scale_y_continuous(labels = label_dollar(scale = 1/100, prefix = "£"))
+  scale_y_continuous(labels = label_dollar(scale = 1/100,
+                                           prefix = "£"))
 ```
 
 ----
@@ -84,7 +85,7 @@ For single people, the general trend for the first 15 years is for income to gro
 
 # How does Income affect Loan Defaulting
 
-```{r, echo=FALSE}
+```{r,echo=FALSE, message=FALSE}
 med_inc <- median(Loans$Income)
 
 Loans %>%
@@ -98,17 +99,17 @@ filter((Income) >= med_inc) %>%
                                            suffix = "K",
                                            accuracy = 1))
 
-Loans_Inc <- linear_reg() %>%
+Loans_Inc_fit <- linear_reg() %>%
   set_engine("lm") %>%
   fit(risk_flag ~ Income, Loans)
-tidy(Loans_Inc)
+tidy(Loans_Inc_fit)
 ```
 
 ----
 
 *How does Marriage Status affect this relationship*
 
-```{r, echo=FALSE}
+```{r,echo=FALSE, message=FALSE}
 Loans %>%
 filter((Income) >= med_inc) %>%
   ggplot(aes(x = Income, colour = risk_flag, fill = risk_flag)) +
@@ -120,28 +121,19 @@ filter((Income) >= med_inc) %>%
                                            suffix = "K",
                                            accuracy = 1))
 
-Loans_Inc_Mar <- linear_reg() %>%
+Loans_Inc_Mar_fit <- linear_reg() %>%
   set_engine("lm") %>%
   fit(risk_flag ~ Income + Married.Single, Loans)
-tidy(Loans_Inc_Mar)
+tidy(Loans_Inc_Mar_fit)
 ```
-
 
 ----
 
-- You can also add pauses between content on a slide using (". . .")
+```{r,echo=FALSE, message=FALSE}
+glance(Loans_Inc)$adj.r.squared
+glance(Loans_Inc_Mar)$adj.r.squared
+```
 
-. . .
-
-Like this.
-
-...or using "::: fragment"
-
-::: fragment
-
-Like this.
-
-:::
 
 # Layouts
 
