@@ -96,18 +96,26 @@ For single people, the general trend for the first 15 years is for income to gro
 med_inc <- median(Loans$Income)
 
 Loans_2 <- Loans %>%
-   mutate(risk_flag = factor(risk_flag))
+   mutate(risk_flag = factor(risk_flag, labels = c("Did not Default on Loan", "Defaulted on Loan")))
 
 Loans_2 %>%
 filter((Income) >= med_inc) %>%
-  ggplot(aes(x = Income, colour = risk_flag, fill = risk_flag)) +
-  geom_histogram(binwidth = 200000) +
+  ggplot(aes(x = Income, fill = risk_flag)) +
+  geom_histogram(binwidth = 200000, show.legend = FALSE) +
   facet_wrap(~ risk_flag) +
   scale_x_continuous(breaks = seq(med_inc, 10000000, by = 2000000),
                      labels = label_dollar(scale = 1/100000,
                                            prefix = "£",
                                            suffix = "K",
-                                           accuracy = 1)) 
+                                           accuracy = 1)) +
+  labs(
+    title = "Income of People with an Income Greater than the Median income vs Amount of People",
+    subtitle = "Faceted by Wether People Defaulted on their Loans or not",
+    x = "Income(Euros)",
+    y = "Number of People",
+  ) +
+  theme_minimal()
+
   
 
 Loans_Inc_fit <- logistic_reg() %>%
@@ -121,16 +129,23 @@ tidy(Loans_Inc_fit)
 *How does Marriage Status affect this relationship*
 
 ```{r,echo=FALSE, message=FALSE}
-Loans %>%
+Loans_2 %>%
 filter((Income) >= med_inc) %>%
   ggplot(aes(x = Income, colour = risk_flag, fill = risk_flag)) +
-  geom_histogram(binwidth = 200000) +
+  geom_histogram(binwidth = 200000, show.legend = FALSE) +
   facet_wrap(Married.Single ~ risk_flag) +
   scale_x_continuous(breaks = seq(med_inc, 10000000, by = 2000000),
                      labels = label_dollar(scale = 1/100000, 
                                            prefix = "£", 
                                            suffix = "K",
-                                           accuracy = 1))
+                                           accuracy = 1)) +
+  labs(
+    title = "Income of People with an Income Greater than the Median income vs Amount of People",
+    subtitle = "Faceted by Wether People Defaulted on their Loans or not and Wether they are Single or Married",
+    x = "Income(Euros)",
+    y = "Number of People",
+  ) +
+  theme_minimal()
 
 Loans_Inc_Mar_fit <- linear_reg() %>%
   set_engine("lm") %>%
@@ -141,8 +156,8 @@ tidy(Loans_Inc_Mar_fit)
 ----
 
 ```{r,echo=FALSE, message=FALSE}
-glance(Loans_Inc_fit)$adj.r.squared
-glance(Loans_Inc_Mar)$adj.r.squared
+#glance(Loans_Inc_fit)$adj.r.squared
+#glance(Loans_Inc_Mar_fit)$adj.r.squared
 ```
 
 

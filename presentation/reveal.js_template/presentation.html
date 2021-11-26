@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Amigos   Orestis Patsalides, Nicolas Georgiades and Iskandar Sawalha " />
-  <meta name="dcterms.date" content="2021-11-25" />
+  <meta name="dcterms.date" content="2021-11-26" />
   <title>Loan Defaulting Investigation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -137,7 +137,7 @@
   <h1 class="subtitle"><font size ='7'>For Bank Clients In India</font></h1>
   <h2 class="author"><font size ='6'>Amigos <br> Orestis Patsalides, Nicolas Georgiades and Iskandar Sawalha </font></h2>
   <h3 class="institute"><font size ='10'>University of Edinburgh</font></h2>
-  <h3 class="date"><font size = '6'>2021-11-25</font></h3>
+  <h3 class="date"><font size = '6'>2021-11-26</font></h3>
 </section>
 
 <section id="introducing-our-investigation" class="slide level2" data-background-image="img/s2.png">
@@ -317,31 +317,19 @@ single
 <p></font></p>
 </section></section>
 <section>
-<<<<<<< HEAD
 <section id="how-does-income-affect-loan-defaulting" class="title-slide slide level1">
 <h1>How does Income affect Loan Defaulting</h1>
 <p><img src="presentation_files/figure-revealjs/unnamed-chunk-2-1.png" width="80%" /></p>
-=======
-<section id="section" class="title-slide slide level1">
-<h1></h1>
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-2-1.png" width="80%" /> #</p>
->>>>>>> 2aa2ddec99957c7093d6e222307cf59670041337
 <pre><code>## # A tibble: 2 × 5
-##   term        estimate std.error statistic   p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-## 1 (Intercept) 1.25e- 1  4.04e- 3    31.1   2.19e-208
-## 2 Income      5.68e-10  6.98e-10     0.814 4.16e-  1</code></pre>
+##   term        estimate     std.error statistic p.value
+##   &lt;chr&gt;          &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept) -1.94e+0 0.0363          -53.5     0    
+## 2 Income       5.08e-9 0.00000000624     0.814   0.416</code></pre>
 </section>
-<<<<<<< HEAD
 <section class="slide level2">
 
 <p><em>How does Marriage Status affect this relationship</em></p>
 <p><img src="presentation_files/figure-revealjs/unnamed-chunk-3-1.png" width="80%" /></p>
-=======
-<section id="section-1" class="slide level2">
-<h2></h2>
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-4-1.png" width="80%" /></p>
->>>>>>> 2aa2ddec99957c7093d6e222307cf59670041337
 <pre><code>## # A tibble: 3 × 5
 ##   term                  estimate std.error statistic  p.value
 ##   &lt;chr&gt;                    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -351,8 +339,6 @@ single
 </section>
 <section class="slide level2">
 
-<pre><code>## [1] -1.206961e-05</code></pre>
-<pre><code>## [1] -3.26718e-05</code></pre>
 </section></section>
 <section id="layouts" class="title-slide slide level1">
 <h1>Layouts</h1>
@@ -376,25 +362,15 @@ like this
 
 <section id="code" class="title-slide slide level1">
 <h1>Code</h1>
-<<<<<<< HEAD
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a boring regression</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model)</span></code></pre></div>
-=======
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a boring regression</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model)</span></code></pre></div>
->>>>>>> 2aa2ddec99957c7093d6e222307cf59670041337
 <pre><code>## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)   -17.6      6.76      -2.60 1.23e- 2
 ## 2 speed           3.93     0.416      9.46 1.49e-12</code></pre>
-<<<<<<< HEAD
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model)</span></code></pre></div>
-=======
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model)</span></code></pre></div>
->>>>>>> 2aa2ddec99957c7093d6e222307cf59670041337
 <pre><code>## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -416,11 +392,7 @@ like this
 <li>goes here</li>
 </ul>
 </div><div class="column">
-<<<<<<< HEAD
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-4-1.png" width="100%" /></p>
-=======
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-6-1.png" width="100%" /></p>
->>>>>>> 2aa2ddec99957c7093d6e222307cf59670041337
+<p><img src="presentation_files/figure-revealjs/unnamed-chunk-5-1.png" width="100%" /></p>
 </div>
 </div>
 </section>
@@ -433,11 +405,7 @@ like this
 <li>goes here</li>
 </ul>
 </div><div class="column" style="width:60%;">
-<<<<<<< HEAD
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-5-1.png" width="100%" /></p>
-=======
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-7-1.png" width="100%" /></p>
->>>>>>> 2aa2ddec99957c7093d6e222307cf59670041337
+<p><img src="presentation_files/figure-revealjs/unnamed-chunk-6-1.png" width="100%" /></p>
 </div>
 </div>
 </section></section>
@@ -577,7 +545,7 @@ setosa
 <p><img src="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" title="Image credit: Photo by Jörg Angeli on Unsplash." alt="Image credit: Photo by Jörg Angeli on Unsplash." width="60%" style="display: block; margin: auto;" /></p>
 <p>Or you can also include a full page image. See next slide.</p>
 </section>
-<section id="section-2" class="slide level2" data-background-image="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1650&amp;q=80">
+<section id="section" class="slide level2" data-background-image="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1650&amp;q=80">
 <h2 data-background-image="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1650&amp;q=80"></h2>
 </section></section>
 <section id="math-expressions" class="title-slide slide level1">
