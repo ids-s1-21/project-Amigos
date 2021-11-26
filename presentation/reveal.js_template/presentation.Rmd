@@ -66,7 +66,14 @@ Loans %>%
   facet_wrap(~ Married.Single) +
   geom_smooth()+
   scale_y_continuous(labels = label_dollar(scale = 1/100,
-                                           prefix = "£"))
+                                           prefix = "£"))+
+  labs(
+    title = "Experience of person in years vs. median income of person in Euros",
+    x = "Experience in Years",
+    y = "Median Income(Euros)",
+    subtitle = "Faceted by Wether a Person is Married or Single"
+  ) +
+  theme_minimal()
 ```
 
 ----
@@ -88,7 +95,10 @@ For single people, the general trend for the first 15 years is for income to gro
 ```{r,echo=FALSE, message=FALSE}
 med_inc <- median(Loans$Income)
 
-Loans %>%
+Loans_2 <- Loans %>%
+   mutate(risk_flag = factor(risk_flag))
+
+Loans_2 %>%
 filter((Income) >= med_inc) %>%
   ggplot(aes(x = Income, colour = risk_flag, fill = risk_flag)) +
   geom_histogram(binwidth = 200000) +
@@ -97,11 +107,12 @@ filter((Income) >= med_inc) %>%
                      labels = label_dollar(scale = 1/100000,
                                            prefix = "£",
                                            suffix = "K",
-                                           accuracy = 1))
+                                           accuracy = 1)) 
+  
 
-Loans_Inc_fit <- linear_reg() %>%
-  set_engine("lm") %>%
-  fit(risk_flag ~ Income, Loans)
+Loans_Inc_fit <- logistic_reg() %>%
+  set_engine("glm") %>%
+  fit(risk_flag ~ Income, Loans_2, family = "binomial")
 tidy(Loans_Inc_fit)
 ```
 
@@ -130,7 +141,7 @@ tidy(Loans_Inc_Mar_fit)
 ----
 
 ```{r,echo=FALSE, message=FALSE}
-glance(Loans_Inc)$adj.r.squared
+glance(Loans_Inc_fit)$adj.r.squared
 glance(Loans_Inc_Mar)$adj.r.squared
 ```
 
