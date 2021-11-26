@@ -51,6 +51,13 @@ Here is a glimpse of our data frame.
 
 ```{r Loans-table, echo = FALSE}
 kable(head(Loans[1:6]), format = "html")
+
+set.seed(1122)
+Loans_split <- initial_split(Loans_2, prop = 0.80)
+
+train_data <- training(Loans_split)
+test_data <- testing(Loans_split)
+
 ```
 
 Source: kaggle.com
@@ -58,7 +65,7 @@ Source: kaggle.com
 # Does Income really Increse with Experience?
 
 ```{r,echo=FALSE, message=FALSE, echo=FALSE}
-Loans %>%
+train_data %>%
   group_by(Experience, Married.Single) %>%
   summarise("med_inc" = median(Income)) %>%
   ggplot(aes(x= Experience, y = med_inc)) +
@@ -93,12 +100,12 @@ For single people, the general trend for the first 15 years is for income to gro
 # How does Income affect Loan Defaulting
 
 ```{r,echo=FALSE, message=FALSE}
-med_inc <- median(Loans$Income)
+med_inc <- median(train_data$Income)
 
 Loans_2 <- Loans %>%
    mutate(risk_flag = factor(risk_flag, labels = c("Did not Default on Loan", "Defaulted on Loan")))
 
-Loans_2 %>%
+train_data %>%
 filter((Income) >= med_inc) %>%
   ggplot(aes(x = Income, fill = risk_flag)) +
   geom_histogram(binwidth = 200000, show.legend = FALSE) +
@@ -129,7 +136,7 @@ tidy(Loans_Inc_fit)
 *How does Marriage Status affect this relationship*
 
 ```{r,echo=FALSE, message=FALSE}
-Loans_2 %>%
+train_data %>%
 filter((Income) >= med_inc) %>%
   ggplot(aes(x = Income, colour = risk_flag, fill = risk_flag)) +
   geom_histogram(binwidth = 200000, show.legend = FALSE) +
