@@ -55,19 +55,20 @@ kable(head(Loans[1:6]), format = "html")
 
 ```{r,echo=FALSE, message=FALSE, echo=FALSE}
 Loans_2 <- Loans %>%
-   mutate(risk_flag = factor(risk_flag, labels = c("Did not Default on Loan", "Defaulted on Loan")))
+   mutate(risk_flag = factor(risk_flag))
 
 med_inc <- median(Loans_2$Income)
 high_inc <- (Loans_2$Income) >= med_inc
 
+Loans_3 <- Loans_2 %>%
+  filter(Income >= med_inc)
+
 set.seed(1122)
-Loans_split <- initial_split(Loans_2, prop = 0.80)
+Loans_split <- initial_split(Loans_3, prop = 0.80)
 
 train_data <- training(Loans_split)
 test_data <- testing(Loans_split)
 
-Loans_3 <- Loans_2 %>%
-  filter(Income >= med_inc)
 ```
 
 Source: kaggle.com
@@ -87,7 +88,7 @@ train_data %>%
   labs(
     title = "Experience of person in years vs. median income of person in Euros",
     x = "Experience in Years",
-    y = "Median Income(Euros)",
+    y = "Median Income",
     subtitle = "Faceted by Wether a Person is Married or Single"
   ) +
   theme_minimal()
@@ -123,7 +124,7 @@ filter((Income) >= med_inc) %>%
   labs(
     title = "Income of People with an Income Greater than the Median income vs Amount of People",
     subtitle = "Faceted by Wether People Defaulted on their Loans or not",
-    x = "Income(Euros)",
+    x = "Income",
     y = "Number of People",
   ) +
   theme_minimal()
@@ -132,7 +133,7 @@ filter((Income) >= med_inc) %>%
 
 Loans_Inc_fit <- logistic_reg() %>%
   set_engine("glm") %>%
-  fit(risk_flag ~ Income, Loans_2, family = "binomial")
+  fit(risk_flag ~ Income, Loans_3, family = "binomial")
 tidy(Loans_Inc_fit)
 ```
 
@@ -153,15 +154,15 @@ filter((Income) >= med_inc) %>%
                                            accuracy = 1)) +
   labs(
     title = "Income of People with an Income Greater than the Median income vs Amount of People",
-    subtitle = "Faceted by Wether People Defaulted on their Loans or not and Wether they are Single or Married",
-    x = "Income(Euros)",
+    subtitle = "Faceted by Whether People Defaulted on their Loans or not and Whether they are Single or Married",
+    x = "Income",
     y = "Number of People",
   ) +
   theme_minimal()
 
-Loans_Inc_Mar_fit <- linear_reg() %>%
-  set_engine("lm") %>%
-  fit(risk_flag ~  + Married.Single, Loans)
+Loans_Inc_Mar_fit <- logistic_reg() %>%
+  set_engine("glm") %>%
+  fit(risk_flag ~ Income + Married.Single, Loans_3, family = "binomial")
 tidy(Loans_Inc_Mar_fit)
 ```
 
@@ -169,11 +170,34 @@ tidy(Loans_Inc_Mar_fit)
 
 ```{r,echo=FALSE, message=FALSE}
 Loans_rec <- recipe(
-  risk_flag ~ 
+  risk_flag ~ Income + Married.Single,
+  data = train_data
 )
+
+Loans_mod <- logistic_reg() %>%
+  set_engine("glm")
+
+Loans_wflow <- workflow() %>%
+  add_model(Loans_mod) %>%
+  add_recipe(Loans_rec)
+
+Loans_fit <- Loans_wflow %>%
+  fit(data = train_data)
+
+Loans_pred <- predict(Loans_fit,
+                      test_data,
+                      type = "prob") %>%
+  bind_cols(test_data %>% select(risk_flag, Income, Married.Single))
+
+Loans_pred
 ```
-
-
+```{r,echo=FALSE, message=FALSE}
+Loans_pred %>%
+  roc_curve(truth = risk_flag,
+            .pred_1,
+            event_level = "second") %>%
+  autoplot()
+```
 # Layouts
 
 You can use plain text
