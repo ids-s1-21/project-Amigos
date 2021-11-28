@@ -30,7 +30,7 @@ Loans <- read.csv("/cloud/project/data/Loans.csv")
 
 ```{r data-split, include=FALSE, message=FALSE}
 Loans_2 <- Loans %>%
-   mutate(risk_flag = factor(risk_flag))
+   mutate(risk_flag = factor(risk_flag, labels = c("No", "Yes")))
 
 med_inc <- median(Loans_2$Income)
 high_inc <- (Loans_2$Income) >= med_inc
@@ -75,26 +75,27 @@ Source: kaggle.com
 train_data %>%
   group_by(Experience, Married.Single) %>%
   summarise("med_inc" = median(Income)) %>%
-  ggplot(aes(x= Experience, y = med_inc)) +
+  ggplot(aes(x = Experience, y = med_inc)) +
   geom_point() +
   facet_wrap(~ Married.Single) +
-  geom_smooth()+
-  scale_y_continuous(labels = label_dollar(scale = 1/100,
-                                           prefix = "£"))+
-  labs(
-    title = "Experience of person in years vs. median income of person in Euros",
-    x = "Experience in Years",
-    y = "Median Income",
-    subtitle = "Faceted by Wether a Person is Married or Single"
-  ) +
-  theme_minimal()
+  geom_smooth(aes(color = "red")) + 
+  scale_y_continuous(labels = label_dollar(scale = 1/100000, 
+                                           prefix = "£", 
+                                           suffix = "K", 
+                                           accuracy = 1)) +
+  labs(title = "Median Income per Year of Experience",
+       subtitle = "By Marital Status",
+       x = "Experience (years)",
+       y = "Median Income (£)") +
+  theme_minimal() + 
+  theme(legend.position = "none")
 ```
 
 ----
 
-*Not Always*
+<font size = "9"> Not Always </font>
 
-<font size="5" align="left">
+<font size = "5" align = "left">
 
 From the graph we can see that for married people income generally decreases with experience, whilst for single people it increases. 
 
@@ -117,12 +118,11 @@ filter((Income) >= med_inc) %>%
                                            prefix = "£",
                                            suffix = "K",
                                            accuracy = 1)) +
-  labs(
-    title = "Income of People with an Income Greater than the Median income vs Amount of People",
-    subtitle = "Faceted by Wether People Defaulted on their Loans or not",
-    x = "Income",
-    y = "Number of People",
-  ) +
+  labs(title = "High Income Distribution",
+       subtitle = "By Loan Defaulting",
+       x = "High Income (£)",
+       y = "Frequency") +
+  scale_fill_manual(values = c("No" = "Red", "Yes" = "Green")) +
   theme_minimal()
 ```
 
@@ -138,7 +138,7 @@ tidy(Loans_Inc_fit)
 ```{r relationship2, echo=FALSE, message=FALSE}
 train_data %>%
 filter((Income) >= med_inc) %>%
-  ggplot(aes(x = Income, colour = risk_flag, fill = risk_flag)) +
+  ggplot(aes(x = Income, fill = risk_flag)) +
   geom_histogram(binwidth = 200000, show.legend = FALSE) +
   facet_wrap(Married.Single ~ risk_flag) +
   scale_x_continuous(breaks = seq(med_inc, 10000000, by = 2000000),
@@ -146,12 +146,11 @@ filter((Income) >= med_inc) %>%
                                            prefix = "£", 
                                            suffix = "K",
                                            accuracy = 1)) +
-  labs(
-    title = "Income of People with an Income Greater than the Median income vs Amount of People",
-    subtitle = "Faceted by Whether People Defaulted on their Loans or not and Whether they are Single or Married",
-    x = "Income",
-    y = "Number of People",
-  ) +
+  labs(title = "High Incone Distribution",
+       subtitle = "By Loan Defaulting and Marital Status",
+       x = "High Income (£)",
+       y = "Frequency") +
+  scale_fill_manual(values = c("No" = "Red", "Yes" = "Green")) +
   theme_minimal()
 ```
 
@@ -187,7 +186,7 @@ Loans_pred <- predict(Loans_fit,
   bind_cols(test_data %>% select(risk_flag, Income, Married.Single))
 
 Loans_pred %>%
-  arrange(desc(.pred_1)) %>%
+  arrange(desc(.pred_Yes)) %>%
   print(n = 10)
 ```
 
@@ -198,7 +197,7 @@ Loans_pred %>%
 ```{r roc-curve, echo=FALSE, message=FALSE}
 Loans_pred %>%
   roc_curve(truth = risk_flag,
-            .pred_1,
+            .pred_Yes,
             event_level = "second") %>%
   autoplot()
 ```

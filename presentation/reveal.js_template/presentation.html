@@ -184,7 +184,7 @@ Married.Single
 1
 </td>
 <td style="text-align:left;">
-0
+No
 </td>
 <td style="text-align:right;">
 7393090
@@ -204,7 +204,7 @@ single
 3
 </td>
 <td style="text-align:left;">
-1
+Yes
 </td>
 <td style="text-align:right;">
 8901342
@@ -224,7 +224,7 @@ single
 7
 </td>
 <td style="text-align:left;">
-0
+No
 </td>
 <td style="text-align:right;">
 5101498
@@ -244,7 +244,7 @@ married
 8
 </td>
 <td style="text-align:left;">
-0
+No
 </td>
 <td style="text-align:right;">
 6716946
@@ -264,7 +264,7 @@ single
 9
 </td>
 <td style="text-align:left;">
-0
+No
 </td>
 <td style="text-align:right;">
 8369802
@@ -284,7 +284,7 @@ single
 10
 </td>
 <td style="text-align:left;">
-1
+Yes
 </td>
 <td style="text-align:right;">
 9565457
@@ -310,8 +310,8 @@ single
 </section>
 <section class="slide level2">
 
-<p><em>Not Always</em></p>
-<p><font size="5" align="left"></p>
+<p><font size = "9"> Not Always </font></p>
+<p><font size = "5" align = "left"></p>
 <p>From the graph we can see that for married people income generally decreases with experience, whilst for single people it increases.</p>
 <p>Focusing on married people, we can see that income starts higher than for single people, as they have 2 salaries. There is a steep decrease which can be explained by the fact that possibly the woman stops working after the marriage, as is usually the trend in developing countries with less developed societies. Then, after 7 years of experience, the income starts to rise, due to the fact that the people have more experience, thus are more productive and are rewarded for this. However, after 12 years income starts decreasing again, likely because after a certain age people become fatigued of their job and their productivity decreases and some even retire (a number which increases as the years of experience increase), leading to the effect observed.</p>
 <p>For single people, the general trend for the first 15 years is for income to grow with experience. Although, after 15 years people grow bored of their jobs, meaning they become less productive or consider retiring, both results increasing as the years go by, thus a decrease in income is observed.</p>
@@ -332,18 +332,18 @@ single
 <h1><font size = '12'> How Accurate is the Model in Predicting future Loan Defaulting </font></h1>
 <p><em><font size = '6'> Based on High Income and Marital Status </font></em></p>
 <pre><code>## # A tibble: 2,801 × 5
-##    .pred_0 .pred_1 risk_flag  Income Married.Single
-##      &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;       &lt;int&gt; &lt;chr&gt;         
-##  1   0.865   0.135 0         9999180 single        
-##  2   0.865   0.135 1         9985581 single        
-##  3   0.865   0.135 0         9984878 single        
-##  4   0.865   0.135 0         9984878 single        
-##  5   0.865   0.135 0         9984878 single        
-##  6   0.865   0.135 0         9984878 single        
-##  7   0.865   0.135 0         9984878 single        
-##  8   0.865   0.135 0         9979065 single        
-##  9   0.865   0.135 0         9979065 single        
-## 10   0.865   0.135 0         9978110 single        
+##    .pred_No .pred_Yes risk_flag  Income Married.Single
+##       &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       &lt;int&gt; &lt;chr&gt;         
+##  1    0.865     0.135 No        9999180 single        
+##  2    0.865     0.135 Yes       9985581 single        
+##  3    0.865     0.135 No        9984878 single        
+##  4    0.865     0.135 No        9984878 single        
+##  5    0.865     0.135 No        9984878 single        
+##  6    0.865     0.135 No        9984878 single        
+##  7    0.865     0.135 No        9984878 single        
+##  8    0.865     0.135 No        9979065 single        
+##  9    0.865     0.135 No        9979065 single        
+## 10    0.865     0.135 No        9978110 single        
 ## # … with 2,791 more rows</code></pre>
 </section>
 <section class="slide level2">
