@@ -51,6 +51,14 @@ Here is a glimpse of our data frame.
 
 ```{r Loans-table, echo = FALSE}
 kable(head(Loans[1:6]), format = "html")
+```
+
+```{r,echo=FALSE, message=FALSE, echo=FALSE}
+Loans_2 <- Loans %>%
+   mutate(risk_flag = factor(risk_flag, labels = c("Did not Default on Loan", "Defaulted on Loan")))
+
+med_inc <- median(train_data$Income)
+high_inc <- (train_data$Income) >= med_inc
 
 set.seed(1122)
 Loans_split <- initial_split(Loans_2, prop = 0.80)
@@ -100,11 +108,6 @@ For single people, the general trend for the first 15 years is for income to gro
 # How does Income affect Loan Defaulting
 
 ```{r,echo=FALSE, message=FALSE}
-med_inc <- median(train_data$Income)
-
-Loans_2 <- Loans %>%
-   mutate(risk_flag = factor(risk_flag, labels = c("Did not Default on Loan", "Defaulted on Loan")))
-
 train_data %>%
 filter((Income) >= med_inc) %>%
   ggplot(aes(x = Income, fill = risk_flag)) +
@@ -156,15 +159,16 @@ filter((Income) >= med_inc) %>%
 
 Loans_Inc_Mar_fit <- linear_reg() %>%
   set_engine("lm") %>%
-  fit(risk_flag ~ Income + Married.Single, Loans)
+  fit(risk_flag ~  + Married.Single, Loans)
 tidy(Loans_Inc_Mar_fit)
 ```
 
 ----
 
 ```{r,echo=FALSE, message=FALSE}
-#glance(Loans_Inc_fit)$adj.r.squared
-#glance(Loans_Inc_Mar_fit)$adj.r.squared
+Loans_rec <- recipe(
+  risk_flag ~ 
+)
 ```
 
 
