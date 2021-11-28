@@ -57,8 +57,8 @@ kable(head(Loans[1:6]), format = "html")
 Loans_2 <- Loans %>%
    mutate(risk_flag = factor(risk_flag, labels = c("Did not Default on Loan", "Defaulted on Loan")))
 
-med_inc <- median(train_data$Income)
-high_inc <- (train_data$Income) >= med_inc
+med_inc <- median(Loans_2$Income)
+high_inc <- (Loans_2$Income) >= med_inc
 
 set.seed(1122)
 Loans_split <- initial_split(Loans_2, prop = 0.80)
@@ -66,6 +66,8 @@ Loans_split <- initial_split(Loans_2, prop = 0.80)
 train_data <- training(Loans_split)
 test_data <- testing(Loans_split)
 
+Loans_3 <- Loans_2 %>%
+  filter(Income >= med_inc)
 ```
 
 Source: kaggle.com
