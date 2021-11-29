@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <meta name="author" content="Amigos   Orestis Patsalides, Nicolas Georgiades and Iskandar Sawalha " />
-  <meta name="dcterms.date" content="2021-11-26" />
+  <meta name="author" content="Amigos   Orestis Patsalides, Nicolas Georgiades and Iskandar Sawalha" />
+  <meta name="dcterms.date" content="2021-11-28" />
   <title>Loan Defaulting Investigation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -133,34 +133,35 @@
     <div class="slides">
 
 <section id="title-slide">
-  <h1 class="title">Loan Defaulting Investigation</h1>
-  <h1 class="subtitle"><font size ='7'>For Bank Clients In India</font></h1>
-  <h2 class="author"><font size ='6'>Amigos <br> Orestis Patsalides, Nicolas Georgiades and Iskandar Sawalha </font></h2>
-  <h3 class="institute"><font size ='10'>University of Edinburgh</font></h2>
-  <h3 class="date"><font size = '6'>2021-11-26</font></h3>
+  <h1 class="title"><font size = '15'>Loan Defaulting Investigation</font></h1>
+  <h1 class="subtitle"><font size ='8'>For Bank Clients In India</font></h1>
+  <h2 class="author"><font size ='6'>Amigos <br> Orestis Patsalides, Nicolas Georgiades and Iskandar Sawalha</font></h2>
+  <h3 class="institute"><font size ='8'>University of Edinburgh</font></h2>
+  <h3 class="date"><font size = '6'>2021-11-28</font></h3>
 </section>
 
-<section id="introducing-our-investigation" class="slide level2" data-background-image="img/s2.png">
-<h2 data-background-image="img/s2.png">Introducing our Investigation</h2>
+<section id="introducing-our-investigation" class="title-slide slide level1" data-background-image="img/s2.png">
+<h1 data-background-image="img/s2.png"><font size = '12'> Introducing our Investigation </font></h1>
 <p>How does a person’s situation and current status affect Loan Defaulting?</p>
 <p>We will try to assess the above question by examining how Age, Income and Marital Status affect Loan Defaulting, for bank clients in India.</p>
 <p>We will do this by the use of statistical models and graphs.</p>
 </section>
+
 <section>
 <section id="introducing-our-data" class="title-slide slide level1" data-background-image="img/s3.png">
-<h1 data-background-image="img/s3.png">Introducing our Data</h1>
+<h1 data-background-image="img/s3.png"><font size = '12'> Introducing our Data </font></h1>
 <p>Our data frame shows observations gathered for different individuals in India related to their current status in life and whether they were able to repay a loan or not. All values were provided at the time of the loan application at several banks India.</p>
 </section>
 <section class="slide level2">
 
-<p>Here is a glimpse of our data frame.</p>
+<p><font size = '9'> Here is a glimpse of our data frame </font></p>
 <table>
 <thead>
 <tr>
 <th style="text-align:right;">
 ID
 </th>
-<th style="text-align:right;">
+<th style="text-align:left;">
 risk_flag
 </th>
 <th style="text-align:right;">
@@ -182,8 +183,8 @@ Married.Single
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-0
+<td style="text-align:left;">
+No
 </td>
 <td style="text-align:right;">
 7393090
@@ -200,30 +201,10 @@ single
 </tr>
 <tr>
 <td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1215004
-</td>
-<td style="text-align:right;">
-25
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:left;">
-single
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-1
+<td style="text-align:left;">
+Yes
 </td>
 <td style="text-align:right;">
 8901342
@@ -240,19 +221,19 @@ single
 </tr>
 <tr>
 <td style="text-align:right;">
-4
+7
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:right;">
+5101498
+</td>
+<td style="text-align:right;">
+55
 </td>
 <td style="text-align:right;">
 0
-</td>
-<td style="text-align:right;">
-1944421
-</td>
-<td style="text-align:right;">
-49
-</td>
-<td style="text-align:right;">
-9
 </td>
 <td style="text-align:left;">
 married
@@ -260,19 +241,19 @@ married
 </tr>
 <tr>
 <td style="text-align:right;">
-5
+8
+</td>
+<td style="text-align:left;">
+No
 </td>
 <td style="text-align:right;">
-0
+6716946
 </td>
 <td style="text-align:right;">
-13429
+70
 </td>
 <td style="text-align:right;">
-25
-</td>
-<td style="text-align:right;">
-18
+15
 </td>
 <td style="text-align:left;">
 single
@@ -280,19 +261,39 @@ single
 </tr>
 <tr>
 <td style="text-align:right;">
-6
+9
+</td>
+<td style="text-align:left;">
+No
 </td>
 <td style="text-align:right;">
-0
+8369802
 </td>
 <td style="text-align:right;">
-3437621
+43
 </td>
 <td style="text-align:right;">
-78
+7
+</td>
+<td style="text-align:left;">
+single
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+Yes
 </td>
 <td style="text-align:right;">
-14
+9565457
+</td>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:right;">
+5
 </td>
 <td style="text-align:left;">
 single
@@ -304,41 +305,51 @@ single
 </section></section>
 <section>
 <section id="does-income-really-increse-with-experience" class="title-slide slide level1">
-<h1>Does Income really Increse with Experience?</h1>
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-1-1.png" width="80%" /></p>
+<h1><font size = '12'> Does Income really Increse with Experience? </font></h1>
+<p><img src="presentation_files/figure-revealjs/initial-relationship-1.png" width="80%" /></p>
 </section>
 <section class="slide level2">
 
-<p><em>Not Always</em></p>
-<p><font size="5" align="left"></p>
+<p><font size = "9"> Not Always </font></p>
+<p><font size = "5" align = "left"></p>
 <p>From the graph we can see that for married people income generally decreases with experience, whilst for single people it increases.</p>
 <p>Focusing on married people, we can see that income starts higher than for single people, as they have 2 salaries. There is a steep decrease which can be explained by the fact that possibly the woman stops working after the marriage, as is usually the trend in developing countries with less developed societies. Then, after 7 years of experience, the income starts to rise, due to the fact that the people have more experience, thus are more productive and are rewarded for this. However, after 12 years income starts decreasing again, likely because after a certain age people become fatigued of their job and their productivity decreases and some even retire (a number which increases as the years of experience increase), leading to the effect observed.</p>
 <p>For single people, the general trend for the first 15 years is for income to grow with experience. Although, after 15 years people grow bored of their jobs, meaning they become less productive or consider retiring, both results increasing as the years go by, thus a decrease in income is observed.</p>
 <p></font></p>
 </section></section>
-<section>
 <section id="how-does-income-affect-loan-defaulting" class="title-slide slide level1">
-<h1>How does Income affect Loan Defaulting</h1>
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-2-1.png" width="80%" /></p>
-<pre><code>## # A tibble: 2 × 5
-##   term        estimate     std.error statistic p.value
-##   &lt;chr&gt;          &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-## 1 (Intercept) -1.94e+0 0.0363          -53.5     0    
-## 2 Income       5.08e-9 0.00000000624     0.814   0.416</code></pre>
+<h1><font size = '12'> How does Income affect Loan Defaulting </font></h1>
+<p><img src="presentation_files/figure-revealjs/relationship1-1.png" width="80%" /></p>
+</section>
+
+<section id="how-does-marriage-status-affect-this-relationship" class="title-slide slide level1">
+<h1><font size = '12'> How does Marriage Status affect this relationship </font></h1>
+<p><img src="presentation_files/figure-revealjs/relationship2-1.png" width="80%" /></p>
+</section>
+
+<section>
+<section id="how-accurate-is-the-model-in-predicting-future-loan-defaulting" class="title-slide slide level1">
+<h1><font size = '12'> How Accurate is the Model in Predicting future Loan Defaulting </font></h1>
+<p><em><font size = '6'> Based on High Income and Marital Status </font></em></p>
+<pre><code>## # A tibble: 2,801 × 5
+##    .pred_No .pred_Yes risk_flag  Income Married.Single
+##       &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       &lt;int&gt; &lt;chr&gt;         
+##  1    0.865     0.135 No        9999180 single        
+##  2    0.865     0.135 Yes       9985581 single        
+##  3    0.865     0.135 No        9984878 single        
+##  4    0.865     0.135 No        9984878 single        
+##  5    0.865     0.135 No        9984878 single        
+##  6    0.865     0.135 No        9984878 single        
+##  7    0.865     0.135 No        9984878 single        
+##  8    0.865     0.135 No        9979065 single        
+##  9    0.865     0.135 No        9979065 single        
+## 10    0.865     0.135 No        9978110 single        
+## # … with 2,791 more rows</code></pre>
 </section>
 <section class="slide level2">
 
-<p><em>How does Marriage Status affect this relationship</em></p>
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-3-1.png" width="80%" /></p>
-<pre><code>## # A tibble: 3 × 5
-##   term                  estimate std.error statistic  p.value
-##   &lt;chr&gt;                    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)           1.29e- 1  7.17e- 3    18.0   3.10e-72
-## 2 Income                5.72e-10  6.98e-10     0.819 4.13e- 1
-## 3 Married.Singlesingle -4.31e- 3  6.63e- 3    -0.651 5.15e- 1</code></pre>
-</section>
-<section class="slide level2">
-
+<p><font size = '9'> Graphical Representation of the Model’s Accuracy </font></p>
+<p><img src="presentation_files/figure-revealjs/roc-curve-1.png" width="80%" /></p>
 </section></section>
 <section id="layouts" class="title-slide slide level1">
 <h1>Layouts</h1>
@@ -362,15 +373,15 @@ like this
 
 <section id="code" class="title-slide slide level1">
 <h1>Code</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a boring regression</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a boring regression</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)   -17.6      6.76      -2.60 1.23e- 2
 ## 2 speed           3.93     0.416      9.46 1.49e-12</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -392,7 +403,7 @@ like this
 <li>goes here</li>
 </ul>
 </div><div class="column">
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-5-1.png" width="100%" /></p>
+<p><img src="presentation_files/figure-revealjs/unnamed-chunk-1-1.png" width="100%" /></p>
 </div>
 </div>
 </section>
@@ -405,7 +416,7 @@ like this
 <li>goes here</li>
 </ul>
 </div><div class="column" style="width:60%;">
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-6-1.png" width="100%" /></p>
+<p><img src="presentation_files/figure-revealjs/unnamed-chunk-2-1.png" width="100%" /></p>
 </div>
 </div>
 </section></section>
