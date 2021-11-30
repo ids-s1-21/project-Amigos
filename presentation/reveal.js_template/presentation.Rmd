@@ -229,7 +229,11 @@ Loans_pred %>%
             .pred_Yes,
             event_level = "second") %>%
   autoplot()
+```
 
+## Prediction Threshold
+
+```{r prediction-threshold, echo=FALSE, message=FALSE}
 train_data %>%
   count(risk_flag)
 
@@ -237,6 +241,16 @@ Loans_pred %>%
   mutate("Prediction" = ifelse(test = .pred_Yes > 0.50, 1, 0)) %>%
   count(Prediction)
 ```
+
+## <font size = '9'> Wrapping Up </font>
+
+<font size = "5" align = "left">
+
+By taking a first glimpse at the predictions of our model, everything seems relatively fine. Since most of the predictions over 0.5, indicating a non loan default, were indeed repayed. However, by plotting an ROC curve, the curve was very close to the line y=x. This shows that our model is guessing randomly about future cases. 
+
+Upon further investigation, we saw that the threshold of the model for loan defaulting was way below 0.5. This occurs due to the fact that our model begins with the assumption that all clients approved for a loan will be able to repay it or else they wouldn't have had been approved in the first place. Thus, this shows that our data is imbalanced and there are limitations attached to it which require further more advanced techniques to be resolved.
+
+</font>
 
 # Layouts
 
