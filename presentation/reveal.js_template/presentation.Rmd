@@ -51,7 +51,7 @@ test_data <- testing(Loans_split)
 
 How does a person’s situation and current status affect Loan Defaulting?
 
-We will try to assess the above question by examining how Age, Income and Marital Status affect Loan Defaulting, for bank clients in India.
+We will try to assess the above question by examining how Experience, Income and Marital Status affect Loan Defaulting, for bank clients in India.
 
 We will do this by the use of statistical models and graphs.
 
