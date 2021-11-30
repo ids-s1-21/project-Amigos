@@ -184,11 +184,11 @@ tidy(Loans_Inc_Mar_fit)
 
 <font size = "5" align = "left">
 
-Generally, from the above faceted graph, we can observe that the number clients who default their loan is greater than that of clients who don't default despite their marriage status. Furthermore, the number of single clients is greater than that of married clients for both defaulted and non-defaulted loans.
+Generally, from the above faceted graph, we can observe that the number of clients who didn't defaulted their loan is greater than that of clients who did default despite their marital status. Furthermore, the number of single clients is greater than that of married clients for both defaulted and non-defaulted loans.
 
-Paying greater attention, we can see that married people are less likely to default on a loan. The relative height difference of the bars for married clients who didn't repay their loan compared to those who did is smaller that the equivalent difference for single clients. However the difference between clients with different marriage statuses does not appear to be very large.
+Paying greater attention, we can see that married people are more likely to default on a loan. The relative height difference of the bars for married clients who didn't repay their loan compared to those who did is smaller than the equivalent difference for single clients. In other words, the proportion of married clients who defaulted on a loan was greater than the equivalent proportion for single clients.
 
-As a result, it can be concluded that if a client (with a higher than the median income of all clients) is married does affect  if he/she will be able to repay a loan or not, but only at a small extent.
+As a result, it can be concluded that the marital status of a client (with a higher than the median income of all clients) does affect the probability that he/she will be able to repay a loan or not.
 
 </font>
 
