@@ -230,6 +230,13 @@ Loans_pred %>%
             .pred_Yes,
             event_level = "second") %>%
   autoplot()
+
+train_data %>%
+  count(risk_flag)
+
+Loans_pred %>%
+  mutate("Prediction" = ifelse(test = .pred_Yes > 0.50, 1, 0)) %>%
+  count(Prediction)
 ```
 
 # Layouts
