@@ -30,6 +30,15 @@ knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618,
 Loans <- read.csv("/cloud/project/data/Loans.csv")
 ```
 
+```{r test, include=FALSE, message=FALSE}
+Loans %>%
+  ggplot() +
+  geom_hex(aes(x = Experience, y = log10(Income))) +
+  facet_wrap(~ risk_flag) +
+  ggtitle("Experience vs Income", subtitle = "By Loan Defaulting Status") +
+  ylab("Income (log10)")
+```
+
 ```{r data-split, include=FALSE, message=FALSE}
 Loans_2 <- Loans %>%
    mutate(risk_flag = factor(risk_flag, labels = c("No", "Yes")))
@@ -61,15 +70,13 @@ Our data frame shows observations gathered for different individuals in India
 related to their current status in life and whether they were able to
 repay a loan or not. All values were provided at the time of the loan application at several banks India.
 
-----
-
-<font size = '9'> Here is a glimpse of our data frame </font>
+## <font size = '9'> Here is a glimpse of our data frame </font> {data-background-image="img/s3.png"}
 
 ```{r Loans-table, echo = FALSE}
 kable(head(Loans_3[1:6]), format = "html")
 ```
 
-Source: kaggle.com
+*Source: kaggle.com*
 
 # <font size = '12'> Does Income really Increase with Experience </font>
 
@@ -93,9 +100,7 @@ train_data %>%
   theme(legend.position = "none")
 ```
 
-----
-
-<font size = "9"> Not Always </font>
+## <font size = "9"> Not Always </font>
 
 <font size = "5" align = "left">
 
@@ -135,9 +140,7 @@ Loans_Inc_fit <- logistic_reg() %>%
 tidy(Loans_Inc_fit)
 ```
 
-----
-
-<font size = "9"> TITLE </font>
+## <font size = "9"> TITLE </font>
 
 <font size = "5" align = "left">
 
@@ -177,9 +180,7 @@ Loans_Inc_Mar_fit <- logistic_reg() %>%
 tidy(Loans_Inc_Mar_fit)
 ```
 
-----
-
-<font size = "9"> Slightly </font>
+## <font size = "9"> Slightly </font>
 
 <font size = "5" align = "left">
 
@@ -220,9 +221,7 @@ Loans_pred %>%
   print(n = 10)
 ```
 
-----
-
-<font size = '9'> Graphical Representation of the Model's Accuracy </font>
+## <font size = '9'> Graphical Representation of the Model's Accuracy </font>
 
 ```{r roc-curve, echo=FALSE, message=FALSE}
 Loans_pred %>%
