@@ -7,6 +7,8 @@ date: <font size = '6'>`r Sys.Date()`</font>
 output:
   revealjs::revealjs_presentation:
     self_contained: false
+    transition: convex
+    theme: league
 ---
 
 ```{r load-packages, include = FALSE}
@@ -47,7 +49,6 @@ test_data <- testing(Loans_split)
 
 # <font size = '12'> Introducing our Investigation </font> {data-background-image="img/s2.png"}
 
-
 How does a person’s situation and current status affect Loan Defaulting?
 
 We will try to assess the above question by examining how Age, Income and Marital Status affect Loan Defaulting, for bank clients in India.
@@ -67,9 +68,10 @@ repay a loan or not. All values were provided at the time of the loan applicatio
 ```{r Loans-table, echo = FALSE}
 kable(head(Loans_3[1:6]), format = "html")
 ```
+
 Source: kaggle.com
 
-# <font size = '12'> Does Income really Increase with Experience? </font>
+# <font size = '12'> Does Income really Increase with Experience </font>
 
 ```{r initial-relationship, echo=FALSE, message=FALSE}
 train_data %>%
@@ -126,17 +128,26 @@ filter((Income) >= med_inc) %>%
   theme_minimal()
 ```
 
-In order to be able to investigate the above question we needed to filter our data so that it only consisted of clients earning an income which was higher than the median income. Clients who fell in this category were considered to be earning a high income.
-From the graph we can clearly see that people earning high income are less likely to default on a loan, since the frequency of those who were able to repay their loan is substantially higher than the one representing clients who failed to repay.
-As a result, it can be concluded that a person earning a high income (higher than the median income of all clients, for the purpose of this investigation) does affect at a high extent if a client will be able to repay a loan or not.
-
-
 ```{r logistic-regression1, include=FALSE, message=FALSE}
 Loans_Inc_fit <- logistic_reg() %>%
   set_engine("glm") %>%
   fit(risk_flag ~ Income, Loans_3, family = "binomial")
 tidy(Loans_Inc_fit)
 ```
+
+----
+
+<font size = "9"> TITLE </font>
+
+<font size = "5" align = "left">
+
+In order to be able to investigate the above question we needed to filter our data so that it only consisted of clients earning an income which was higher than the median income. Clients who fell in this category were considered to be earning a high income.
+
+From the graph we can clearly see that people earning high income are less likely to default on a loan, since the frequency of those who were able to repay their loan is substantially higher than the one representing clients who failed to repay.
+
+As a result, it can be concluded that a person earning a high income (higher than the median income of all clients, for the purpose of this investigation) does affect at a high extent if a client will be able to repay a loan or not.
+
+</font>
 
 # <font size = '12'> How does Marriage Status affect this relationship </font>
 
@@ -165,6 +176,20 @@ Loans_Inc_Mar_fit <- logistic_reg() %>%
   fit(risk_flag ~ Income + Married.Single, Loans_3, family = "binomial")
 tidy(Loans_Inc_Mar_fit)
 ```
+
+----
+
+<font size = "9"> Slightly </font>
+
+<font size = "5" align = "left">
+
+Generally, from the above faceted graph, we can observe that the number clients who default their loan is greater than that of clients who don't default despite their marriage status. Furthermore, the number of single clients is greater than that of married clients for both defaulted and non-defaulted loans.
+
+Paying greater attention, we can see that married people are less likely to default on a loan. The relative height difference of the bars for married clients who didn't repay their loan compared to those who did is smaller that the equivalent difference for single clients. However the difference between clients with different marriage statuses does not appear to be very large.
+
+As a result, it can be concluded that if a client (with a higher than the median income of all clients) is married does affect  if he/she will be able to repay a loan or not, but only at a small extent.
+
+</font>
 
 # <font size = '12'> How Accurate is the Model in Predicting future Loan Defaulting </font>
 *<font size = '6'> Based on High Income and Marital Status </font>*
