@@ -69,7 +69,7 @@ kable(head(Loans_3[1:6]), format = "html")
 ```
 Source: kaggle.com
 
-# <font size = '12'> Does Income really Increse with Experience? </font>
+# <font size = '12'> Does Income really Increase with Experience? </font>
 
 ```{r initial-relationship, echo=FALSE, message=FALSE}
 train_data %>%
@@ -125,6 +125,11 @@ filter((Income) >= med_inc) %>%
   scale_fill_manual(values = c("No" = "Red", "Yes" = "Green")) +
   theme_minimal()
 ```
+
+In order to be able to investigate the above question we needed to filter our data so that it only consisted of clients earning an income which was higher than the median income. Clients who fell in this category were considered to be earning a high income.
+From the graph we can clearly see that people earning high income are less likely to default on a loan, since the frequency of those who were able to repay their loan is substantially higher than the one representing clients who failed to repay.
+As a result, it can be concluded that a person earning a high income (higher than the median income of all clients, for the purpose of this investigation) does affect at a high extent if a client will be able to repay a loan or not.
+
 
 ```{r logistic-regression1, include=FALSE, message=FALSE}
 Loans_Inc_fit <- logistic_reg() %>%
