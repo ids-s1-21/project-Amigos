@@ -252,6 +252,20 @@ Upon further investigation, we saw that the threshold of the model for loan defa
 
 </font>
 
+# <font size = '12'> Conclusion </font>
+
+<font size = '6' align = "left">
+
+To answer the initial question, both variables, high income and marital status, affect loan defaulting.
+
+However, our model is unable to accurately predict future cases.
+
+</font>
+
+```{r money-marriage, echo = FALSE, out.width = "60%", fig.align = "center"}
+include_graphics("https://hips.hearstapps.com/wdy.h-cdn.co/assets/cm/15/09/768x516/54eba19b903ae_-_married-couple-money-pile-xl.jpg?resize=480:*")
+```
+
 # <font size = '12'> THANKS FOR WATCHING </font>
 
 ::: columns
