@@ -247,9 +247,9 @@ single
 <section id="not-always" class="slide level2">
 <h2><font size = "9"> Not Always </font></h2>
 <p><font size = '5' align = "left"></p>
-<p>From the graph we can see that for married people income generally decreases with experience, whilst for single people it increases.</p>
-<p>Focusing on married people, we can see that income starts higher than for single people, as they have 2 combined salaries. There is a steep decrease which can be explained by the fact that women possibly stop working after the marriage, as is usually the trend in developing countries with less developed societies. Then, after 7 years of experience, the income starts to rise, due to the fact that the people have more experience, thus are more productive and are rewarded for this. However, after 12 years income starts decreasing again, likely because after a certain age people become fatigued of their job and their productivity decreases and some even retire (a number which increases as the years of experience increase), leading to the effect observed.</p>
-<p>For single people, the general trend for the first 15 years is for income to grow with experience. Although, after 15 years people grow bored of their jobs, meaning they become less productive or consider retiring, both effects increasing as the years go by, thus a decrease in income is observed.</p>
+<p>From the graph we can see that for married clients income generally decreases with experience, whilst for single clients it increases.</p>
+<p>Focusing on married clients, we can see that income starts higher than for single clients, as they have 2 combined salaries. There is a steep decrease which can be explained by the fact that women possibly stop working after the marriage, as is usually the trend in developing countries with less developed societies. Then, after 7 years of experience, the income starts to rise, due to the fact that the people have more experience, thus are more productive and are rewarded for this. However, after 12 years income starts decreasing again, likely because after a certain age people become fatigued of their job and their productivity decreases and some even retire (a number which increases as the years of experience increase), leading to the effect observed.</p>
+<p>For single clients, the general trend for the first 5 years is for income to grow with experience. Afterwards it remains relatively steady because this effect is countered by the fact that an increasing number of people grow bored of their jobs, meaning they become less productive or consider retiring.</p>
 <p></font></p>
 </section></section>
 <section>
@@ -313,8 +313,8 @@ single
 </section>
 <section id="wrapping-up" class="slide level2">
 <h2><font size = '9'> Wrapping Up </font></h2>
-<p><font size = '6' align = "left"></p>
-<p>By taking a first glimpse at the predictions of our model, everything seems relatively fine. Since most of the predictions over 0.5, indicating a non loan default, were indeed repayed. However, by plotting an ROC curve, the curve was very close to the line y=x. This shows that our model is guessing randomly about future cases.</p>
+<p><font size = '5' align = "left"></p>
+<p>By taking a first glimpse at the predictions of our model, everything seems relatively fine. Since most of the predictions are over 0.5, indicating a non loan default, were indeed repayed. However, by plotting an ROC curve, the curve was very close to the line y=x. This shows that our model is guessing randomly about future cases. As you can see from the first table, the data frame consists of both defaults and non-defaults, but the second table reveals that the model doesn’t predict any future clients will default a loan.</p>
 <p>Upon further investigation, we saw that the threshold of the model for loan defaulting was way below 0.5. This occurs due to the fact that our model begins with the assumption that all clients approved for a loan will be able to repay it or else they wouldn’t have had been approved in the first place. Thus, this shows that our data is imbalanced and there are limitations attached to it which require further more advanced techniques to be resolved.</p>
 <p></font></p>
 </section></section>

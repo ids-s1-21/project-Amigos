@@ -244,7 +244,7 @@ Loans_pred %>%
 
 ## <font size = '9'> Wrapping Up </font>
 
-<font size = '6' align = "left">
+<font size = '5' align = "left">
 
 By taking a first glimpse at the predictions of our model, everything seems relatively fine. Since most of the predictions are over 0.5, indicating a non loan default, were indeed repayed. However, by plotting an ROC curve, the curve was very close to the line y=x. This shows that our model is guessing randomly about future cases. As you can see from the first table, the data frame consists of both defaults and non-defaults, but the second table reveals that the model doesn't predict any future clients will default a loan.
 
