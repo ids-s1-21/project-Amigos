@@ -78,7 +78,7 @@ kable(head(Loans_3[1:6]), format = "html")
 
 *Source: kaggle.com*
 
-# <font size = '12'> Does Income really Increase with Experience </font>
+# <font size = '12'> Does Income really Increase with Experience? </font>
 
 ```{r initial-relationship, echo=FALSE, message=FALSE}
 train_data %>%
@@ -112,7 +112,7 @@ For single people, the general trend for the first 15 years is for income to gro
 
 </font>
 
-# <font size = '12'> How does Income affect Loan Defaulting </font>
+# <font size = '12'> How does Income affect Loan Defaulting? </font>
 
 ```{r relationship1, echo=FALSE, message=FALSE}
 train_data %>%
@@ -140,7 +140,7 @@ Loans_Inc_fit <- logistic_reg() %>%
 tidy(Loans_Inc_fit)
 ```
 
-## <font size = "9"> TITLE </font>
+## <font size = "9"> Well... it is as expected  </font>
 
 <font size = "5" align = "left">
 
@@ -152,7 +152,7 @@ As a result, it can be concluded that a person earning a high income (higher tha
 
 </font>
 
-# <font size = '12'> How does Marriage Status affect this relationship </font>
+# <font size = '12'> How does Marrital Status affect this relationship? </font>
 
 ```{r relationship2, echo=FALSE, message=FALSE}
 train_data %>%
