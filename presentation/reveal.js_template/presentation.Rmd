@@ -66,7 +66,7 @@ We will do this by the use of statistical models and graphs.
 
 # <font size = '12'> Introducing our Data </font> {data-background-image="img/s3.png"}
 
-Our data frame shows observations gathered for different individuals in India
+Our data frame shows observations gathered from different individuals in India
 related to their current status in life and whether they were able to
 repay a loan or not. All values were provided at the time of the loan application at several banks India.
 
@@ -104,11 +104,11 @@ train_data %>%
 
 <font size = '5' align = "left">
 
-From the graph we can see that for married people income generally decreases with experience, whilst for single people it increases. 
+From the graph we can see that for married clients income generally decreases with experience, whilst for single clients it increases. 
 
-Focusing on married people, we can see that income starts higher than for single people, as they have 2 salaries combined. There is a steep decrease which can be explained by the fact that possibly the woman stops working after the marriage, as is usually the trend in developing countries with less developed societies. Then, after 7 years of experience, the income starts to rise, due to the fact that the people have more experience, thus are more productive and are rewarded for this. However, after 12 years income starts decreasing again, likely because after a certain age people become fatigued of their job and their productivity decreases and some even retire (a number which increases as the years of experience increase), leading to the effect observed. 
+Focusing on married clients, we can see that income starts higher than for single clients, as they have 2 combined salaries. There is a steep decrease which can be explained by the fact that women possibly stop working after the marriage, as is usually the trend in developing countries with less developed societies. Then, after 7 years of experience, the income starts to rise, due to the fact that the people have more experience, thus are more productive and are rewarded for this. However, after 12 years income starts decreasing again, likely because after a certain age people become fatigued of their job and their productivity decreases and some even retire (a number which increases as the years of experience increase), leading to the effect observed. 
 
-For single people, the general trend for the first 15 years is for income to grow with experience. Although, after 15 years people grow bored of their jobs, meaning they become less productive or consider retiring, both results increasing as the years go by, thus a decrease in income is observed.
+For single clients, the general trend for the first 5 years is for income to grow with experience. Afterwards it remains relatively steady because this effect is countered by the fact that an increasing number of people grow bored of their jobs, meaning they become less productive or consider retiring.
 
 </font>
 
@@ -184,7 +184,7 @@ tidy(Loans_Inc_Mar_fit)
 
 <font size = '5' align = "left">
 
-Generally, from the above faceted graph, we can observe that the number of clients who didn't defaulted their loan is greater than that of clients who did default despite their marital status. Furthermore, the number of single clients is greater than that of married clients for both defaulted and non-defaulted loans.
+Generally, from the above faceted graph, we can observe that the number of clients who didn't default their loan is greater than that of clients who did default despite their marital status. Furthermore, the number of single clients is greater than that of married clients for both defaulted and non-defaulted loans.
 
 Paying greater attention, we can see that married people are more likely to default on a loan. The relative height difference of the bars for married clients who didn't repay their loan compared to those who did is smaller than the equivalent difference for single clients. In other words, the proportion of married clients who defaulted on a loan was greater than the equivalent proportion for single clients.
 
