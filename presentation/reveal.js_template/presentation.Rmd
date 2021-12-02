@@ -185,9 +185,9 @@ tidy(Loans_Inc_Mar_fit)
 
 <font size = '5' align = "left">
 
-Generally, from the above faceted graph, we can observe that the number of clients who didn't default their loan is greater than that of clients who did default despite their marital status. Furthermore, the number of single clients is greater than that of married clients for both defaulted and non-defaulted loans.
+Generally, from the above faceted graph, we can observe that the number of clients who didn't default their loan is greater than that of clients who did default, despite their marital status. Furthermore, the number of single clients is greater than that of married clients for both defaulted and non-defaulted loans.
 
-Paying greater attention, we can see that married people are more likely to default on a loan. The relative height difference of the bars for married clients who didn't repay their loan compared to those who did is smaller than the equivalent difference for single clients. In other words, the proportion of married clients who defaulted on a loan was greater than the equivalent proportion for single clients.
+Paying greater attention, we can see that married people are more likely to default on a loan. The relative height difference of the bars for married clients who didn't repay their loan, compared to those who did, is smaller than the equivalent difference for single clients. In other words, the proportion of married clients who defaulted on a loan was greater than the equivalent proportion for single clients.
 
 As a result, it can be concluded that the marital status of a client (with a higher than the median income of all clients) does affect the probability that he/she will be able to repay a loan or not.
 
@@ -249,7 +249,7 @@ Loans_pred %>%
 
 By taking a first glimpse at the predictions of our model, everything seems relatively fine. Most of the predictions which were over 0.50, indicating a non-loan default, were indeed repayed. However, by plotting an ROC curve, the curve was very close to the line y=x. This shows that our model is guessing randomly about future cases. As you can see from the first table, the data frame consists of both defaults and non-defaults, but the second table reveals that the model doesn't predict any future clients will default a loan.
 
-Upon further investigation, we saw that the threshold of the model for loan defaulting was way below 0.5. This occurs due to the fact that our model begins with the assumption that all clients approved for a loan will be able to repay it or else they wouldn't have had been approved in the first place. Thus, this shows that our data is imbalanced and there are limitations attached to it, which require further more advanced techniques to be resolved.
+Upon further investigation, we saw that the threshold of the model for loan defaulting was way below the 0.50 mark. This occurs due to the fact that our model begins with the assumption that all clients approved for a loan will be able to repay it, or else they wouldn't have had been approved in the first place. Thus, this shows that our data is imbalanced and there are limitations attached to it, which require further more advanced techniques to be resolved.
 
 </font>
 

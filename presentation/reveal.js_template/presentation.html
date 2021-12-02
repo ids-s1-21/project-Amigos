@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Amigos   Orestis Patsalides, Nicolas Georgiades and Iskandar Sawalha" />
-  <meta name="dcterms.date" content="2021-12-01" />
+  <meta name="dcterms.date" content="2021-12-02" />
   <title>Loan Defaulting Investigation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -74,7 +74,7 @@
   <h1 class="subtitle"><font size ='8'>For Bank Clients In India</font></h1>
   <h2 class="author"><font size ='6'>Amigos <br> Orestis Patsalides, Nicolas Georgiades and Iskandar Sawalha</font></h2>
   <h3 class="institute"><font size ='8'>University of Edinburgh</font></h2>
-  <h3 class="date"><font size = '6'>2021-12-01</font></h3>
+  <h3 class="date"><font size = '6'>2021-12-02</font></h3>
 </section>
 
 <section id="introducing-our-investigation" class="title-slide slide level1" data-background-image="img/s2.png">
@@ -273,8 +273,8 @@ single
 <section id="slightly" class="slide level2">
 <h2><font size = '9'> Slightly </font></h2>
 <p><font size = '5' align = "left"></p>
-<p>Generally, from the above faceted graph, we can observe that the number of clients who didn’t default their loan is greater than that of clients who did default despite their marital status. Furthermore, the number of single clients is greater than that of married clients for both defaulted and non-defaulted loans.</p>
-<p>Paying greater attention, we can see that married people are more likely to default on a loan. The relative height difference of the bars for married clients who didn’t repay their loan compared to those who did is smaller than the equivalent difference for single clients. In other words, the proportion of married clients who defaulted on a loan was greater than the equivalent proportion for single clients.</p>
+<p>Generally, from the above faceted graph, we can observe that the number of clients who didn’t default their loan is greater than that of clients who did default, despite their marital status. Furthermore, the number of single clients is greater than that of married clients for both defaulted and non-defaulted loans.</p>
+<p>Paying greater attention, we can see that married people are more likely to default on a loan. The relative height difference of the bars for married clients who didn’t repay their loan, compared to those who did, is smaller than the equivalent difference for single clients. In other words, the proportion of married clients who defaulted on a loan was greater than the equivalent proportion for single clients.</p>
 <p>As a result, it can be concluded that the marital status of a client (with a higher than the median income of all clients) does affect the probability that he/she will be able to repay a loan or not.</p>
 <p></font></p>
 </section></section>
@@ -315,7 +315,7 @@ single
 <h2><font size = '9'> Wrapping Up </font></h2>
 <p><font size = '5' align = "left"></p>
 <p>By taking a first glimpse at the predictions of our model, everything seems relatively fine. Most of the predictions which were over 0.50, indicating a non-loan default, were indeed repayed. However, by plotting an ROC curve, the curve was very close to the line y=x. This shows that our model is guessing randomly about future cases. As you can see from the first table, the data frame consists of both defaults and non-defaults, but the second table reveals that the model doesn’t predict any future clients will default a loan.</p>
-<p>Upon further investigation, we saw that the threshold of the model for loan defaulting was way below 0.5. This occurs due to the fact that our model begins with the assumption that all clients approved for a loan will be able to repay it or else they wouldn’t have had been approved in the first place. Thus, this shows that our data is imbalanced and there are limitations attached to it, which require further more advanced techniques to be resolved.</p>
+<p>Upon further investigation, we saw that the threshold of the model for loan defaulting was way below the 0.50 mark. This occurs due to the fact that our model begins with the assumption that all clients approved for a loan will be able to repay it, or else they wouldn’t have had been approved in the first place. Thus, this shows that our data is imbalanced and there are limitations attached to it, which require further more advanced techniques to be resolved.</p>
 <p></font></p>
 </section></section>
 <section id="conclusion" class="title-slide slide level1">
