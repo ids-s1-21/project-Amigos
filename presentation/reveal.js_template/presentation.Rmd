@@ -19,6 +19,7 @@ library(tidymodels)
 library(palmerpenguins)
 library(knitr)
 library(revealjs)
+
 ```
 
 ```{r setup, include=FALSE}
