@@ -12,14 +12,12 @@ output:
 ---
 
 ```{r load-packages, include = FALSE}
-# Add any additional packages you need to this chunk
 library(rmarkdown)
 library(tidyverse)
 library(tidymodels)
 library(palmerpenguins)
 library(knitr)
 library(revealjs)
-
 ```
 
 ```{r setup, include=FALSE}
