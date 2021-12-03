@@ -1,0 +1,282 @@
+---
+title: <font size = '15'>Loan Defaulting Investigation</font>
+subtitle: <font size ='8'>For Bank Clients In India</font>
+author: <font size ='6'>Amigos <br> Orestis Patsalides, Nicolas Georgiades and Iskandar Sawalha</font>
+institute: <font size ='8'>University of Edinburgh</font>
+date: <font size = '6'>`r Sys.Date()`</font>
+output:
+  revealjs::revealjs_presentation:
+    self_contained: false
+    transition: convex
+    theme: league
+---
+
+```{r load-packages, include = FALSE}
+library(rmarkdown)
+library(tidyverse)
+library(tidymodels)
+library(palmerpenguins)
+library(knitr)
+library(revealjs)
+```
+
+```{r setup, include=FALSE}
+# For better figure resolution
+knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618, out.width = "80%")
+```
+
+```{r load-data, include=FALSE}
+Loans <- read.csv("/cloud/project/data/Loans.csv")
+```
+
+```{r test, include=FALSE, message=FALSE}
+Loans %>%
+  ggplot() +
+  geom_hex(aes(x = Experience, y = log10(Income))) +
+  facet_wrap(~ risk_flag) +
+  ggtitle("Experience vs Income", subtitle = "By Loan Defaulting Status") +
+  ylab("Income (log10)")
+```
+
+```{r data-split, include=FALSE, message=FALSE}
+Loans_2 <- Loans %>%
+   mutate(risk_flag = factor(risk_flag, labels = c("No", "Yes")))
+
+med_inc <- median(Loans_2$Income)
+high_inc <- (Loans_2$Income) >= med_inc
+
+Loans_3 <- Loans_2 %>%
+  filter(Income >= med_inc)
+
+set.seed(1122)
+Loans_split <- initial_split(Loans_3, prop = 0.80)
+
+train_data <- training(Loans_split)
+test_data <- testing(Loans_split)
+```
+
+# <font size = '12'> Introducing our Investigation </font> {data-background-image="img/s2.png"}
+
+How does a person’s situation and current status affect Loan Defaulting?
+
+We will try to assess the above question by examining how Experience, Income and Marital Status affect Loan Defaulting, for bank clients in India.
+
+We will do this by the use of statistical models and graphs.
+
+# <font size = '12'> Introducing our Data </font> {data-background-image="img/s3.png"}
+
+Our data frame shows observations gathered from different individuals in India
+related to their current status in life and whether they were able to
+repay a loan or not. All values were provided at the time of the loan application at several banks India.
+
+## <font size = '9'> Here is a glimpse of our data frame </font>
+
+```{r Loans-table, echo = FALSE}
+kable(head(Loans_3[1:6]), format = "html")
+```
+
+*Source: kaggle.com*
+
+# <font size = '12'> Does Income really Increase with Experience? </font>
+
+```{r initial-relationship, echo=FALSE, message=FALSE}
+train_data %>%
+  group_by(Experience, Married.Single) %>%
+  summarise("med_inc" = median(Income)) %>%
+  ggplot(aes(x = Experience, y = med_inc)) +
+  geom_point() +
+  facet_wrap(~ Married.Single) +
+  geom_smooth(aes(color = "red")) + 
+  scale_y_continuous(labels = label_dollar(scale = 1/100000, 
+                                           prefix = "£", 
+                                           suffix = "K", 
+                                           accuracy = 1)) +
+  labs(title = "Median Income per Year of Experience",
+       subtitle = "By Marital Status",
+       x = "Experience (years)",
+       y = "Median Income (£)") +
+  theme_minimal() + 
+  theme(legend.position = "none")
+```
+
+## <font size = "9"> Not Always </font>
+
+<font size = '5' align = "left">
+
+From the graph we can see that for married clients income generally decreases with experience, whilst for single clients it increases. 
+
+Focusing on married clients, we can see that income starts higher than for single clients, as they have 2 combined salaries. There is a steep decrease which can be explained by the fact that women possibly stop working after the marriage, as is usually the trend in developing countries with less developed societies. Then, after 7 years of experience, the income starts to rise, due to the fact that the people have more experience, thus are more productive and are rewarded for this. However, after 12 years income starts decreasing again, likely because after a certain age people become fatigued of their job and their productivity decreases and some even retire (a number which increases as the years of experience increase), leading to the effect observed. 
+
+For single clients, the general trend for the first 5 years is for income to grow with experience. Afterwards it remains relatively steady because this effect is countered by the fact that an increasing number of people grow bored of their jobs, meaning they become less productive or consider retiring.
+
+</font>
+
+# <font size = '12'> How does Income affect Loan Defaulting? </font>
+
+```{r relationship1, echo=FALSE, message=FALSE}
+train_data %>%
+filter((Income) >= med_inc) %>%
+  ggplot(aes(x = Income, fill = risk_flag)) +
+  geom_histogram(binwidth = 200000, show.legend = FALSE) +
+  facet_wrap(~ risk_flag) +
+  scale_x_continuous(breaks = seq(med_inc, 10000000, by = 2000000),
+                     labels = label_dollar(scale = 1/100000,
+                                           prefix = "£",
+                                           suffix = "K",
+                                           accuracy = 1)) +
+  labs(title = "High Income Distribution",
+       subtitle = "By Loan Defaulting",
+       x = "High Income (£)",
+       y = "Frequency") +
+  scale_fill_manual(values = c("No" = "Red", "Yes" = "Green")) +
+  theme_minimal()
+```
+
+```{r logistic-regression1, include=FALSE, message=FALSE}
+Loans_Inc_fit <- logistic_reg() %>%
+  set_engine("glm") %>%
+  fit(risk_flag ~ Income, Loans_3, family = "binomial")
+tidy(Loans_Inc_fit)
+```
+
+## <font size = '9'> Well... it is as expected  </font>
+
+<font size = '6' align = "left">
+
+In order to be able to investigate the above question we needed to filter our data so that it only consisted of clients earning an income which was higher than the median income. Clients who fell in this category were considered to be earning a high income.
+
+From the graph we can clearly see that the vast majority of high income earners were able to repay their loan, since the frequency representing them was much higher than the one representing those who defaulted on their loan.
+
+As a result, it can be concluded that a person earning a high income (higher than the median income of all clients, for the purpose of this investigation) does affect at a high extent if a client will be able to repay a loan or not.
+
+</font>
+
+# <font size = '12'> How does Marrital Status affect this relationship? </font>
+
+```{r relationship2, echo=FALSE, message=FALSE}
+train_data %>%
+filter((Income) >= med_inc) %>%
+  ggplot(aes(x = Income, fill = risk_flag)) +
+  geom_histogram(binwidth = 200000, show.legend = FALSE) +
+  facet_wrap(Married.Single ~ risk_flag) +
+  scale_x_continuous(breaks = seq(med_inc, 10000000, by = 2000000),
+                     labels = label_dollar(scale = 1/100000, 
+                                           prefix = "£", 
+                                           suffix = "K",
+                                           accuracy = 1)) +
+  labs(title = "High Income Distribution",
+       subtitle = "By Loan Defaulting and Marital Status",
+       x = "High Income (£)",
+       y = "Frequency") +
+  scale_fill_manual(values = c("No" = "Red", "Yes" = "Green")) +
+  theme_minimal()
+```
+
+```{r logistic-regression2, include=FALSE, message=FALSE}
+Loans_Inc_Mar_fit <- logistic_reg() %>%
+  set_engine("glm") %>%
+  fit(risk_flag ~ Income + Married.Single, Loans_3, family = "binomial")
+tidy(Loans_Inc_Mar_fit)
+```
+
+## <font size = '9'> Slightly </font>
+
+<font size = '5' align = "left">
+
+Generally, from the above faceted graph, we can observe that the number of clients who didn't default their loan is greater than that of clients who did default, despite their marital status. Furthermore, the number of single clients is greater than that of married clients for both defaulted and non-defaulted loans.
+
+Paying greater attention, we can see that married people are more likely to default on a loan. The relative height difference of the bars for married clients who didn't repay their loan, compared to those who did, is smaller than the equivalent difference for single clients. In other words, the proportion of married clients who defaulted on a loan was greater than the equivalent proportion for single clients.
+
+As a result, it can be concluded that the marital status of a client (with a higher than the median income of all clients) does affect the probability that he/she will be able to repay a loan or not.
+
+</font>
+
+# <font size = '12'> How Accurate is the Model in Predicting future Loan Defaulting </font>
+*<font size = '6'> Based on High Income and Marital Status </font>*
+
+```{r prediction, echo=FALSE, message=FALSE}
+Loans_rec <- recipe(
+  risk_flag ~ Income + Married.Single,
+  data = train_data
+)
+
+Loans_mod <- logistic_reg() %>%
+  set_engine("glm")
+
+Loans_wflow <- workflow() %>%
+  add_model(Loans_mod) %>%
+  add_recipe(Loans_rec)
+
+Loans_fit <- Loans_wflow %>%
+  fit(data = train_data)
+
+Loans_pred <- predict(Loans_fit,
+                      test_data,
+                      type = "prob") %>%
+  bind_cols(test_data %>% select(risk_flag, Income, Married.Single))
+
+Loans_pred %>%
+  arrange(desc(.pred_Yes)) %>%
+  print(n = 10)
+```
+
+## <font size = '9'> Graphical Representation of the Model's Accuracy </font>
+
+```{r roc-curve, echo=FALSE, message=FALSE}
+Loans_pred %>%
+  roc_curve(truth = risk_flag,
+            .pred_Yes,
+            event_level = "second") %>%
+  autoplot()
+```
+
+## Prediction Threshold
+
+```{r prediction-threshold, echo=FALSE, message=FALSE}
+train_data %>%
+  count(risk_flag)
+
+Loans_pred %>%
+  mutate("Prediction" = ifelse(test = .pred_Yes > 0.50, 1, 0)) %>%
+  count(Prediction)
+```
+
+## <font size = '9'> Wrapping Up </font>
+
+<font size = '5' align = "left">
+
+By taking a first glimpse at the predictions of our model, everything seems relatively fine. Most of the predictions which were over 0.50, indicating a non-loan default, were indeed repayed. However, by plotting an ROC curve, the curve was very close to the line y=x. This shows that our model is guessing randomly about future cases. As you can see from the first table, the data frame consists of both defaults and non-defaults, but the second table reveals that the model doesn't predict any future clients will default a loan.
+
+Upon further investigation, we saw that the threshold of the model for loan defaulting was way below the 0.50 mark. This occurs due to the fact that our model begins with the assumption that all clients approved for a loan will be able to repay it, or else they wouldn't have had been approved in the first place. Thus, this shows that our data is imbalanced and there are limitations attached to it, which require further more advanced techniques to be resolved.
+
+</font>
+
+# <font size = '12'> Conclusion </font>
+
+<font size = '6' align = "left">
+
+To answer the initial question, both variables, high income and marital status, affect loan defaulting.
+
+However, our model is unable to accurately predict future cases.
+
+</font>
+
+```{r money-marriage, echo = FALSE, out.width = "60%", fig.align = "center"}
+include_graphics("https://hips.hearstapps.com/wdy.h-cdn.co/assets/cm/15/09/768x516/54eba19b903ae_-_married-couple-money-pile-xl.jpg?resize=480:*")
+```
+
+# <font size = '12'> THANKS FOR WATCHING </font>
+
+::: columns
+:::: {.column width="60%"}
+<font size = '8'> The conclusion from our investigation is that if you want to get a loan and be able to repay it then </font>
+
+<font size = '12'> DON'T GET MARRIED </font>
+::::
+
+:::: {.column width="40%"}
+```{r not-married, echo = FALSE, out.width = "100%", fig.align = "center"}
+include_graphics("https://indianorphanage.com/io/wp-content/uploads/2014/02/no-marriages.png")
+```
+::::
+:::
